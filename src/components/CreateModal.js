@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
-const CreateModal = ({statuses, priority, postTasks}) => {
+const CreateModal = ({statuses, priority, postTask}) => {
     const [modal, setModal] = useState(false);
     const [newTask, setNewTask] = useState({});
     const toggle = () => setModal(!modal);
@@ -22,7 +22,7 @@ const CreateModal = ({statuses, priority, postTasks}) => {
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             console.log(newTask)
-            postTasks(newTask)
+            postTask(newTask)
             toggle()
             setNewTask({})
         }

@@ -1,7 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const KanbanCard = ({task, statuses}) => {
+const KanbanCard = ({task, statuses, deleteTask}) => {
+    const handleTaskDelete = () => {
+        deleteTask(task._id);
+    }
+
     return (
         <div className="card"
              style={{
@@ -67,7 +71,9 @@ const KanbanCard = ({task, statuses}) => {
                         variant="outline-secondary">
                         ←
                     </Button>
-                    <Button variant="outline-secondary">
+                    <Button variant="outline-secondary"
+                            onClick={() => handleTaskDelete()}
+                    >
                         Delete
                     </Button>
                     <Button

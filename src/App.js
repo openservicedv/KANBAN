@@ -32,8 +32,14 @@ function App() {
                 console.log(e)
             })
     }
-    const postTasks = (newTask) => {
+    const postTask = (newTask) => {
         axios.post('https://expressjs-server.vercel.app/tasks', newTask)
+            .then(res => getTasks())
+            .catch(err => alert("Something went wrong, try again later"))
+    }
+
+    const deleteTask = (id) => {
+        axios.delete(`https://expressjs-server.vercel.app/tasks/${id}`)
             .then(res => getTasks())
             .catch(err => alert("Something went wrong, try again later"))
     }
@@ -57,7 +63,7 @@ function App() {
             <CreateModal
                 statuses={statuses}
                 priority={priority}
-                postTasks={postTasks}
+                postTask={postTask}
             />
             <div className="container text-center"
                  style={{
@@ -83,6 +89,7 @@ function App() {
                             column={el}
                             tasks={tasks}
                             statuses={statuses}
+                            deleteTask={deleteTask}
                         />))}
                 </div>
             </div>

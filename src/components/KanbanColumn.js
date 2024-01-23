@@ -2,7 +2,7 @@ import React from 'react';
 import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 
-const KanbanColumn = ({column, tasks, statuses}) => {
+const KanbanColumn = ({column, tasks, statuses, deleteTask}) => {
     return (
         <div className="col"
              style={{
@@ -48,6 +48,7 @@ const KanbanColumn = ({column, tasks, statuses}) => {
                         key={el._id}
                         task={el}
                         statuses={statuses}
+                        deleteTask={deleteTask}
                     />
                 ))}
 
