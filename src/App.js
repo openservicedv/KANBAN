@@ -59,6 +59,7 @@ function App() {
                             key={el._id}
                             column={el}
                             tasks={tasks}
+                            statuses={statuses}
                         />))}
                 </div>
             </div>

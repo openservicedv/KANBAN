@@ -2,7 +2,7 @@ import React from 'react';
 // import {Button} from "reactstrap";
 import Button from 'react-bootstrap/Button';
 
-const Task = ({task}) => {
+const Task = ({task, statuses}) => {
     return (
         <div className="card"
              style={{
@@ -62,13 +62,17 @@ const Task = ({task}) => {
 
                      }}
                 >
-                    <Button variant="outline-secondary">
+                    <Button
+                        disabled={task.status === statuses[0].status}
+                        variant="outline-secondary">
                         ←
                     </Button>
                     <Button variant="outline-secondary">
                         Delete
                     </Button>
-                    <Button variant="outline-secondary">
+                    <Button
+                        disabled={task.status === statuses[statuses.length - 1].status}
+                        variant="outline-secondary">
                         →
                     </Button>
                 </div>

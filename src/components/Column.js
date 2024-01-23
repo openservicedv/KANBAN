@@ -2,7 +2,7 @@ import React from 'react';
 import Task from "./Task";
 import Button from 'react-bootstrap/Button';
 
-const Column = ({column, tasks}) => {
+const Column = ({column, tasks, statuses}) => {
     return (
         <div className="col">
             <div className="d-flex justify-content-between"
@@ -27,6 +27,7 @@ const Column = ({column, tasks}) => {
                     <Task
                         key={el._id}
                         task={el}
+                        statuses={statuses}
                     />
                 ))}
 
