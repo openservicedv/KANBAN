@@ -28,7 +28,7 @@ const Task = ({task}) => {
 
                         }}>{task.name}</h5>
                     <Button variant="outline-secondary">
-                        -
+                        Edit
                     </Button>
 
                 </div>
