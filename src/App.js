@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {useEffect, useState} from "react";
-import Column from "./components/Column";
+import KanbanColumn from "./components/KanbanColumn";
 import CreateModal from "./components/CreateModal";
 
 function App() {
@@ -45,17 +45,40 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
+        <div className="App"
+             style={{
+                 border: "dashed black",
+                 margin: "5px",
+                 padding: "5px",
+             }}
+
+        >
             <h1>Kanban Board</h1>
             <CreateModal
                 statuses={statuses}
                 priority={priority}
                 postTasks={postTasks}
             />
-            <div className="container text-center">
-                <div className="row align-items-start">
+            <div className="container text-center"
+                 style={{
+                     border: "dashed black 3px",
+                     margin: "5px",
+                     padding: "5px",
+                     width: "1200px",
+
+                 }}
+            >
+                <div className="row align-items-start"
+                     style={{
+                         border: "solid gray",
+                         background: "lightyellow",
+                         // margin: "5px",
+                         // padding: "5px",
+
+                     }}
+                >
                     {statuses.map((el) => (
-                        <Column
+                        <KanbanColumn
                             key={el._id}
                             column={el}
                             tasks={tasks}

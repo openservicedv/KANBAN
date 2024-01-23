@@ -1,24 +1,24 @@
 import React from 'react';
-// import {Button} from "reactstrap";
 import Button from 'react-bootstrap/Button';
 
-const Task = ({task, statuses}) => {
+const KanbanCard = ({task, statuses}) => {
     return (
         <div className="card"
              style={{
                  // border: "solid",
-
              }}>
             <div className="card-body"
                  style={{
-                     border: "brown dashed",
-                     marginBottom: "10px",
+                     // border: "brown solid",
+                     // background: "lightgray",
+                     // marginBottom: "10px",
                      height: "300px",
-
+                     width: "273px",
                  }}>
                 <div className="d-flex justify-content-start"
                      style={{
                          border: "dashed blue",
+                         width: "243px",
                          marginBottom: "5px",
 
                      }}>
@@ -86,4 +86,4 @@ const Task = ({task, statuses}) => {
     );
 };
 
-export default Task;
+export default KanbanCard;
