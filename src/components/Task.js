@@ -50,10 +50,10 @@ const Task = ({task}) => {
                        }}>priority: {task.priority}
                     </p>
                     <Button variant="outline-secondary">
-                        -
+                        ↓
                     </Button>
                     <Button variant="outline-secondary">
-                        +
+                        ↑
                     </Button>
                 </div>
                 <div className="d-flex justify-content-start"
@@ -63,13 +63,13 @@ const Task = ({task}) => {
                      }}
                 >
                     <Button variant="outline-secondary">
-                        -
+                        ←
                     </Button>
                     <Button variant="outline-secondary">
                         Delete
                     </Button>
                     <Button variant="outline-secondary">
-                        +
+                        →
                     </Button>
                 </div>
                 {/*<p className="card-text"*/}

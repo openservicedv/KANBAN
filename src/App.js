@@ -6,8 +6,8 @@ import Column from "./components/Column";
 import CreateModal from "./components/CreateModal";
 
 function App() {
-    const [statuses, setStatuses] = useState([])
     const [tasks, setTasks] = useState([])
+    const [statuses, setStatuses] = useState([])
     const priority = Array(10).fill(0).map((el, index) => index)
     const getStatuses = () => {
         axios
@@ -32,11 +32,16 @@ function App() {
                 console.log(e)
             })
     }
+    const postTasks = (newTask) => {
+        axios.post('https://expressjs-server.vercel.app/tasks', newTask)
+            .then(res => getTasks())
+            .catch(err => alert("Something went wrong, try again later"))
+    }
 
     useEffect(() => {
         getStatuses()
         getTasks()
-        console.log(priority)
+        // console.log(priority)
     }, []);
 
     return (
@@ -45,6 +50,7 @@ function App() {
             <CreateModal
                 statuses={statuses}
                 priority={priority}
+                postTasks={postTasks}
             />
             <div className="container text-center">
                 <div className="row align-items-start">
