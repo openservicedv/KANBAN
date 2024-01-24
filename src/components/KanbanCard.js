@@ -1,11 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const KanbanCard = ({task, statuses, deleteTask}) => {
-    const handleTaskDelete = () => {
-        deleteTask(task._id);
-    }
+import {useDispatch, useSelector} from "react-redux";
+import {requestTaskDelete} from "../asyncActions/requestTaskDelete";
 
+const KanbanCard = ({task}) => {
+    const dispatch = useDispatch()
+    const statuses = useSelector(state => state.statuses)
     return (
         <div className="card"
              style={{
@@ -72,7 +73,7 @@ const KanbanCard = ({task, statuses, deleteTask}) => {
                         ←
                     </Button>
                     <Button variant="outline-secondary"
-                            onClick={() => handleTaskDelete()}
+                            onClick={() => dispatch(requestTaskDelete(task._id))}
                     >
                         Delete
                     </Button>

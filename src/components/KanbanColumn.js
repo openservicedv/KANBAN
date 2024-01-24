@@ -1,8 +1,10 @@
 import React from 'react';
 import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
+import {useSelector} from "react-redux";
 
-const KanbanColumn = ({column, tasks, statuses, deleteTask}) => {
+const KanbanColumn = ({column}) => {
+    const tasks = useSelector(state => state.tasks)
     return (
         <div className="col"
              style={{
@@ -47,8 +49,6 @@ const KanbanColumn = ({column, tasks, statuses, deleteTask}) => {
                     <KanbanCard
                         key={el._id}
                         task={el}
-                        statuses={statuses}
-                        deleteTask={deleteTask}
                     />
                 ))}
 

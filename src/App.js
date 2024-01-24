@@ -1,54 +1,59 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import {useEffect, useState} from "react";
+// import {useEffect} from "react";
 import KanbanColumn from "./components/KanbanColumn";
 import CreateModal from "./components/CreateModal";
+import {useDispatch, useSelector} from "react-redux";
+import {requestAllTasks} from "./asyncActions/requestAllTasks";
+import {requestAllStatuses} from "./asyncActions/requestAllStatuses";
 
 function App() {
-    const [tasks, setTasks] = useState([])
-    const [statuses, setStatuses] = useState([])
+    const dispatch = useDispatch()
+
+    dispatch(requestAllStatuses())
+    dispatch(requestAllTasks())
+
+    const tasks = useSelector(state => state.tasks)
+    const statuses = useSelector(state => state.statuses)
     const priority = Array(10).fill(0).map((el, index) => index)
-    const getStatuses = () => {
-        axios
-            .get("https://expressjs-server.vercel.app/statuses")
-            .then((res) => {
-                setStatuses(res.data)
-                console.log(res.data)
-            })
-            .catch((e) => {
-                console.log(e)
-            })
-    }
+    // const getStatuses = () => {
+    //     axios
+    //         .get("https://expressjs-server.vercel.app/statuses")
+    //         .then((res) => {
+    //             // setStatuses(res.data)
+    //             console.log(res.data)
+    //         })
+    //         .catch((e) => {
+    //             console.log(e)
+    //         })
+    // }
+    //
+    // const getTasks = () => {
+    //     axios
+    //         .get("https://expressjs-server.vercel.app/tasks")
+    //         .then((res) => {
+    //             // setTasks(res.data)
+    //             console.log(res.data)
+    //         })
+    //         .catch((e) => {
+    //             console.log(e)
+    //         })
+    // }
 
-    const getTasks = () => {
-        axios
-            .get("https://expressjs-server.vercel.app/tasks")
-            .then((res) => {
-                setTasks(res.data)
-                console.log(res.data)
-            })
-            .catch((e) => {
-                console.log(e)
-            })
-    }
-    const postTask = (newTask) => {
-        axios.post('https://expressjs-server.vercel.app/tasks', newTask)
-            .then(res => getTasks())
-            .catch(err => alert("Something went wrong, try again later"))
-    }
 
-    const deleteTask = (id) => {
-        axios.delete(`https://expressjs-server.vercel.app/tasks/${id}`)
-            .then(res => getTasks())
-            .catch(err => alert("Something went wrong, try again later"))
-    }
+//todo
+    // const postTask = (newTask) => {
+    //     axios.post('https://expressjs-server.vercel.app/tasks', newTask)
+    //         .then(res => getTasks())
+    //         .catch(err => alert("Something went wrong, try again later"))
+    // }
 
-    useEffect(() => {
-        getStatuses()
-        getTasks()
-        // console.log(priority)
-    }, []);
+
+    // const deleteTask = (id) => {
+    //     axios.delete(`https://expressjs-server.vercel.app/tasks/${id}`)
+    //         .then(res => getTasks())
+    //         .catch(err => alert("Something went wrong, try again later"))
+    // }
 
     return (
         <div className="App"
@@ -57,13 +62,10 @@ function App() {
                  margin: "5px",
                  padding: "5px",
              }}
-
         >
             <h1>Kanban Board</h1>
             <CreateModal
-                statuses={statuses}
                 priority={priority}
-                postTask={postTask}
             />
             <div className="container text-center"
                  style={{
@@ -83,19 +85,16 @@ function App() {
 
                      }}
                 >
-                    {statuses.map((el) => (
+                    {statuses?.map((el) => (
                         <KanbanColumn
                             key={el._id}
                             column={el}
                             tasks={tasks}
-                            statuses={statuses}
-                            deleteTask={deleteTask}
                         />))}
                 </div>
             </div>
         </div>
-    )
-        ;
+    );
 }
 
 export default App;

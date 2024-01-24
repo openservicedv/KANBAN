@@ -2,7 +2,12 @@ import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
+import {useDispatch} from "react-redux";
+import {requestAllStatuses} from "../asyncActions/requestAllStatuses";
+
 const CreateModal = ({statuses, priority, postTask}) => {
+    const dispatch = useDispatch()
+
     const [modal, setModal] = useState(false);
     const [newTask, setNewTask] = useState({});
     const toggle = () => setModal(!modal);
@@ -35,10 +40,18 @@ const CreateModal = ({statuses, priority, postTask}) => {
 
     return (
         <div>
-            <h1>{modal ? "true" : "false"}</h1>
             <Button color="danger" onClick={toggle}>
                 Create Task
             </Button>
+
+            <Button onClick={()=> dispatch(requestAllStatuses())}>
+                request All Statuses
+            </Button>
+
+            {/*<Button onClick={()=> dispatch(getRequest())}>*/}
+            {/*    getRequest*/}
+            {/*</Button>*/}
+
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create Task</ModalHeader>
                 <ModalBody>
@@ -57,7 +70,7 @@ const CreateModal = ({statuses, priority, postTask}) => {
                                  onChange={(event) => handleTaskStatus(event)}
                     >
                         <option>Define status</option>
-                        {statuses.map(el => (
+                        {statuses?.map(el => (
                             <option key={el._id} value={el.status}>{el.status}</option>
                         ))}
                     </Form.Select>
