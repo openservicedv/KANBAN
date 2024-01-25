@@ -15,7 +15,7 @@ export const taskReducer = (state = defaultState, action) => {
 
 
 // const postTask = (newTask) => {
-//     axios.post('https://expressjs-server.vercel.app/tasks', newTask)
+//     axios.post('tasks', newTask)
 //         .then(res => getTasks())
 //         .catch(err => alert("Something went wrong, try again later"))
 // }
