@@ -16,7 +16,7 @@ import {
 const CreateModal = ({priority}) => {
     const statuses = useSelector(state => state.statusReducer.statuses)
     const newTask = useSelector(state => state.taskReducer.newTask)
-    const modal = useSelector(state => state.taskReducer.modal)
+    const modal = useSelector(state => state.modalReducer.modal)
     const dispatch = useDispatch()
 
     const handleSave = () => {
@@ -36,8 +36,8 @@ const CreateModal = ({priority}) => {
             <Button color="danger" onClick={() => dispatch(toggle(!modal))}>
                 Create Task
             </Button>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Create Task</ModalHeader>
+            <Modal isOpen={modal} toggle={() => dispatch(toggle(!modal))}>
+                <ModalHeader toggle={() => dispatch(toggle(!modal))}>Create Task</ModalHeader>
                 <ModalBody>
                     <InputGroup style={{marginBottom: "15px"}}>
                         <Input placeholder="task name"
