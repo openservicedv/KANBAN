@@ -3,7 +3,7 @@ import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
 
-const KanbanColumn = ({column}) => {
+const KanbanColumn = ({column, priority}) => {
     const tasks = useSelector(state => state.taskReducer.tasks)
 
     return (
@@ -49,6 +49,7 @@ const KanbanColumn = ({column}) => {
                 .map(el => (
                     <KanbanCard key={el._id}
                                 task={el}
+                                priority={priority}
                     />
                 ))}
 

@@ -3,10 +3,24 @@ import Button from 'react-bootstrap/Button';
 
 import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../asyncActions/asyncDeleteTask";
+import {patchTask} from "../store/actions";
 
-const KanbanCard = ({task}) => {
+const KanbanCard = ({task, priority}) => {
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
+
+    const handleMoveStatus = (task, key, step) => {
+        console.log(task.status)
+        if (key === "status") {
+            for (let i = 0; i < statuses.length; i++) {
+                if (statuses[i].status === task.status) {
+                    dispatch(patchTask(task, key, statuses[i + step].status))
+                }
+            }
+        } else if (key === "priority") {
+            dispatch(patchTask(task, key, task.priority + step))
+        }
+    }
 
     return (
         <div className="card"
@@ -55,10 +69,16 @@ const KanbanCard = ({task}) => {
 
                        }}>priority: {task.priority}
                     </p>
-                    <Button variant="outline-secondary">
+                    <Button variant="outline-secondary"
+                            disabled={task.priority === priority[0]}
+                            onClick={() => handleMoveStatus(task, "priority", -1)}
+                    >
                         ↓
                     </Button>
-                    <Button variant="outline-secondary">
+                    <Button variant="outline-secondary"
+                            disabled={task.priority === priority[priority.length - 1]}
+                            onClick={() => handleMoveStatus(task, "priority", 1)}
+                    >
                         ↑
                     </Button>
                 </div>
@@ -70,7 +90,9 @@ const KanbanCard = ({task}) => {
                 >
                     <Button
                         disabled={task.status === statuses[0].status}
-                        variant="outline-secondary">
+                        variant="outline-secondary"
+                        onClick={() => handleMoveStatus(task, "status", -1)}
+                    >
                         ←
                     </Button>
                     <Button variant="outline-secondary"
@@ -80,7 +102,9 @@ const KanbanCard = ({task}) => {
                     </Button>
                     <Button
                         disabled={task.status === statuses[statuses.length - 1].status}
-                        variant="outline-secondary">
+                        variant="outline-secondary"
+                        onClick={() => handleMoveStatus(task, "status", 1)}
+                    >
                         →
                     </Button>
                 </div>

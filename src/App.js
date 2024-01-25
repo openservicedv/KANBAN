@@ -2,20 +2,28 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KanbanColumn from "./components/KanbanColumn";
 import CreateModal from "./components/CreateModal";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {asyncGetTasks} from "./asyncActions/asyncGetTasks";
 import {asyncGetStatuses} from "./asyncActions/asyncGetStatuses";
-import {useEffect} from "react";
+import {asyncPatchTask} from "./asyncActions/asyncPatchTask";
 
 function App() {
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
+    const updatedTask = useSelector(state => state.cardReducer.updatedTask)
     const priority = Array(10).fill(0).map((el, index) => index)
 
     useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
     }, [dispatch]);
+
+    useEffect(() => {
+        console.log(updatedTask)
+        dispatch(asyncPatchTask(updatedTask))
+    }, [dispatch, updatedTask]);
+
 
     return (
         <div className="App"
@@ -50,6 +58,7 @@ function App() {
                     {statuses.map((el) => (
                         <KanbanColumn key={el._id}
                                       column={el}
+                                      priority={priority}
                         />))}
                 </div>
             </div>
