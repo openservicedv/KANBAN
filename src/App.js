@@ -1,59 +1,22 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import {useEffect} from "react";
 import KanbanColumn from "./components/KanbanColumn";
 import CreateModal from "./components/CreateModal";
 import {useDispatch, useSelector} from "react-redux";
-import {requestAllTasks} from "./asyncActions/requestAllTasks";
-import {requestAllStatuses} from "./asyncActions/requestAllStatuses";
+import {asyncGetTasks} from "./asyncActions/asyncGetTasks";
+import {asyncGetStatuses} from "./asyncActions/asyncGetStatuses";
+import {useEffect} from "react";
 
 function App() {
     const dispatch = useDispatch()
-
-    dispatch(requestAllStatuses())
-    dispatch(requestAllTasks())
-
-    const tasks = useSelector(state => state.tasks)
-    const statuses = useSelector(state => state.statuses)
+    const tasks = useSelector(state => state.taskReducer.tasks)
+    const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = Array(10).fill(0).map((el, index) => index)
-    // const getStatuses = () => {
-    //     axios
-    //         .get("https://expressjs-server.vercel.app/statuses")
-    //         .then((res) => {
-    //             // setStatuses(res.data)
-    //             console.log(res.data)
-    //         })
-    //         .catch((e) => {
-    //             console.log(e)
-    //         })
-    // }
-    //
-    // const getTasks = () => {
-    //     axios
-    //         .get("https://expressjs-server.vercel.app/tasks")
-    //         .then((res) => {
-    //             // setTasks(res.data)
-    //             console.log(res.data)
-    //         })
-    //         .catch((e) => {
-    //             console.log(e)
-    //         })
-    // }
 
-
-//todo
-    // const postTask = (newTask) => {
-    //     axios.post('https://expressjs-server.vercel.app/tasks', newTask)
-    //         .then(res => getTasks())
-    //         .catch(err => alert("Something went wrong, try again later"))
-    // }
-
-
-    // const deleteTask = (id) => {
-    //     axios.delete(`https://expressjs-server.vercel.app/tasks/${id}`)
-    //         .then(res => getTasks())
-    //         .catch(err => alert("Something went wrong, try again later"))
-    // }
+    useEffect( () => {
+        dispatch(asyncGetStatuses())
+        dispatch(asyncGetTasks())
+    }, [dispatch]);
 
     return (
         <div className="App"
@@ -85,7 +48,7 @@ function App() {
 
                      }}
                 >
-                    {statuses?.map((el) => (
+                    {statuses.map((el) => (
                         <KanbanColumn
                             key={el._id}
                             column={el}

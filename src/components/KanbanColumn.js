@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
 
 const KanbanColumn = ({column}) => {
-    const tasks = useSelector(state => state.tasks)
+    const tasks = useSelector(state => state.taskReducer.tasks)
+
     return (
         <div className="col"
              style={{

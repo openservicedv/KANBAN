@@ -1,12 +1,12 @@
 import axios from "axios";
-import {allTasks} from "../store/actions";
+import {getStatuses} from "../store/actions";
 
-export const requestAllTasks = () => {
+export const asyncGetStatuses = () => {
     return function (dispatch) {
-        axios.get("https://expressjs-server.vercel.app/tasks")
+        axios.get("https://expressjs-server.vercel.app/statuses")
             .then((res) => {
                 console.log(res.data)
-                dispatch(allTasks(res.data))
+                dispatch(getStatuses(res.data))
             })
             .catch((e) => {
                 console.log(e)

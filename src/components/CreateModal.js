@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
-import {useDispatch} from "react-redux";
-import {requestAllStatuses} from "../asyncActions/requestAllStatuses";
+import {useSelector} from "react-redux";
 
-const CreateModal = ({statuses, priority, postTask}) => {
-    const dispatch = useDispatch()
+const CreateModal = ({priority, postTask}) => {
+    const statuses = useSelector(state => state.statusReducer.statuses)
 
+    //TODO
     const [modal, setModal] = useState(false);
     const [newTask, setNewTask] = useState({});
     const toggle = () => setModal(!modal);
@@ -44,11 +44,11 @@ const CreateModal = ({statuses, priority, postTask}) => {
                 Create Task
             </Button>
 
-            <Button onClick={()=> dispatch(requestAllStatuses())}>
-                request All Statuses
-            </Button>
+            {/*<Button onClick={()=> dispatch(asyncGetStatuses())}>*/}
+            {/*    request All Statuses*/}
+            {/*</Button>*/}
 
-            {/*<Button onClick={()=> dispatch(getRequest())}>*/}
+            {/*<Button onClick={()=> dispatch(asyncGetTasks())}>*/}
             {/*    getRequest*/}
             {/*</Button>*/}
 
