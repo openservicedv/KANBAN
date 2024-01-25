@@ -16,6 +16,7 @@ function App() {
     useEffect( () => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
+        console.log(process.env.REACT_APP_URL)
     }, [dispatch]);
 
     return (

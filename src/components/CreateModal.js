@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {asyncPostTask} from "../asyncActions/asyncPostTask";
 
 const CreateModal = ({priority, postTask}) => {
     const statuses = useSelector(state => state.statusReducer.statuses)
+    const dispatch = useDispatch()
 
     //TODO
     const [modal, setModal] = useState(false);
@@ -27,7 +29,7 @@ const CreateModal = ({priority, postTask}) => {
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             console.log(newTask)
-            postTask(newTask)
+            dispatch(asyncPostTask(newTask))
             toggle()
             setNewTask({})
         }
@@ -43,15 +45,6 @@ const CreateModal = ({priority, postTask}) => {
             <Button color="danger" onClick={toggle}>
                 Create Task
             </Button>
-
-            {/*<Button onClick={()=> dispatch(asyncGetStatuses())}>*/}
-            {/*    request All Statuses*/}
-            {/*</Button>*/}
-
-            {/*<Button onClick={()=> dispatch(asyncGetTasks())}>*/}
-            {/*    getRequest*/}
-            {/*</Button>*/}
-
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create Task</ModalHeader>
                 <ModalBody>

@@ -7,6 +7,7 @@ import {asyncDeleteTask} from "../asyncActions/asyncDeleteTask";
 const KanbanCard = ({task}) => {
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
+
     return (
         <div className="card"
              style={{
