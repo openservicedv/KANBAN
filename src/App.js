@@ -9,11 +9,10 @@ import {useEffect} from "react";
 
 function App() {
     const dispatch = useDispatch()
-    const tasks = useSelector(state => state.taskReducer.tasks)
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = Array(10).fill(0).map((el, index) => index)
 
-    useEffect( () => {
+    useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
     }, [dispatch]);
@@ -49,10 +48,8 @@ function App() {
                      }}
                 >
                     {statuses.map((el) => (
-                        <KanbanColumn
-                            key={el._id}
-                            column={el}
-                            tasks={tasks}
+                        <KanbanColumn key={el._id}
+                                      column={el}
                         />))}
                 </div>
             </div>

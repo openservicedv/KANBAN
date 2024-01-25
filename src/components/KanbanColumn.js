@@ -47,9 +47,8 @@ const KanbanColumn = ({column}) => {
             {tasks
                 .filter(el => (el.status === column.status))
                 .map(el => (
-                    <KanbanCard
-                        key={el._id}
-                        task={el}
+                    <KanbanCard key={el._id}
+                                task={el}
                     />
                 ))}
 

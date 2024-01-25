@@ -1,5 +1,10 @@
 export const getStatuses = (payload) => ({type: "getStatuses", payload: payload})
 export const getTasks = (payload) => ({type: "getTasks", payload: payload})
-export const postTask = (payload) => ({type: "postTask", payload: payload})
+export const saveTaskName = (payload) => ({type: "saveTaskName", payload: payload})
+export const saveTaskDescription = (payload) => ({type: "saveTaskDescription", payload: payload})
+export const saveTaskStatus = (payload) => ({type: "saveTaskStatus", payload: payload})
+export const saveTaskPriority = (payload) => ({type: "saveTaskPriority", payload: payload})
+export const clearNewTask = (payload) => ({type: "clearNewTask", payload: payload})
 export const deleteTask = (payload) => ({type: "deleteTask", payload: payload})
+export const toggle = (payload) => ({type: "toggle", payload: payload})
 
