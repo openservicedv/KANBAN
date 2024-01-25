@@ -13,10 +13,12 @@ function App() {
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = Array(10).fill(0).map((el, index) => index)
 
+    const URL = process.env.REACT_APP_BASE_URL;
+    console.log(URL)
+
     useEffect( () => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
-        console.log(process.env.REACT_APP_URL)
     }, [dispatch]);
 
     return (
