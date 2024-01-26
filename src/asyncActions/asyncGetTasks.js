@@ -1,7 +1,7 @@
 import axios from "axios";
 import {getTasks} from "../store/actions";
 
-export const asyncGetTasks = (dispatch) => {
+export const asyncGetTasks = () => {
     return function (dispatch) {
         axios.get("https://expressjs-server.vercel.app/tasks")
             .then((res) => {

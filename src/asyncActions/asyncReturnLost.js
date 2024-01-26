@@ -3,7 +3,7 @@ function delay() {
     return new Promise(resolve => setTimeout(resolve, 5000));
 }
 
-async function delayedLog(item) {
+async function delayedLog() {
     await delay()
 }
 
