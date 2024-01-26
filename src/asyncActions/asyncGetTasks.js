@@ -5,8 +5,8 @@ export const asyncGetTasks = (dispatch) => {
     return function (dispatch) {
         axios.get("https://expressjs-server.vercel.app/tasks")
             .then((res) => {
-                console.log(res.data)
-                return dispatch(getTasks(res.data))
+                const sortResData = res.data.sort((el1, el2)=>el1.priority < el2.priority ? 1 : -1)
+                dispatch(getTasks(sortResData))
             })
             .catch((e) => {
                 console.log(e)

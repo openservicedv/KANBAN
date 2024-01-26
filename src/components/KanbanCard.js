@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 
 import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../asyncActions/asyncDeleteTask";
-import {patchTask} from "../store/actions";
+import {patchTask, toggleEdit} from "../store/actions";
 
 const KanbanCard = ({task, priority}) => {
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
+    const editModal = useSelector(state => state.cardReducer.editModal)
 
     const handlePatch = (task, key, step) => {
         // console.log(task.status)
@@ -47,7 +48,10 @@ const KanbanCard = ({task, priority}) => {
                             border: "solid red",
 
                         }}>{task.name}</h5>
-                    <Button variant="outline-secondary">
+                    <Button variant="outline-secondary"
+                            onClick={() => dispatch(toggleEdit(!editModal))}
+                            // onClick={() => handleEdit(task, "name", -1)}
+                    >
                         Edit
                     </Button>
 

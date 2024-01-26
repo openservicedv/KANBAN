@@ -5,41 +5,36 @@ import Form from 'react-bootstrap/Form';
 import {useDispatch, useSelector} from "react-redux";
 import {asyncPostTask} from "../asyncActions/asyncPostTask";
 import {
-    patchTask, clearNewTask,
+    clearNewTask,
     saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus,
-    toggle
+    toggleCreate
 } from "../store/actions";
+import {asyncReturnLost} from "../asyncActions/asyncReturnLost";
 
-const CreateModal = ({priority}) => {
+const CreateCard = ({priority}) => {
+
     const statuses = useSelector(state => state.statusReducer.statuses)
     const tasks = useSelector(state => state.taskReducer.tasks)
     const newTask = useSelector(state => state.taskReducer.newTask)
-    const modal = useSelector(state => state.modalReducer.modal)
+    const createModal = useSelector(state => state.cardReducer.createModal)
     const dispatch = useDispatch()
 
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
             dispatch(clearNewTask({}))
-            dispatch(toggle(!modal))
+            dispatch(toggleCreate(!createModal))
         }
     }
+
     const handleCancel = () => {
         dispatch(clearNewTask({}))
-        dispatch(toggle(!modal))
-    }
-    const returnLost = () => {
-        for (let i = 0; i < tasks.length; i++) {
-            if (!(tasks[i].status === "todo" || tasks[i].status === "review" || tasks[i].status === "in progress" || tasks[i].status === "done")) {
-                dispatch(patchTask(tasks[i], "status", "todo"))
-                console.log(tasks[i])
-            }
-        }
+        dispatch(toggleCreate(!createModal))
     }
 
     return (
         <div>
-            <div className="d-flex justify-content-between"
+            <div className="d-flex justify-content-around"
                  style={{
                      border: "dashed blue",
                      // width: "600px",
@@ -47,16 +42,18 @@ const CreateModal = ({priority}) => {
 
                  }}>
                 <Button color="warning"
-                        onClick={() => returnLost()}
+                        onClick={() => asyncReturnLost(tasks, dispatch)}
                 >Return all lost tasks
                 </Button>
                 <Button color="danger"
-                        onClick={() => dispatch(toggle(!modal))}
+                        onClick={() => dispatch(toggleCreate(!createModal))}
                 >Create Task
                 </Button>
             </div>
-            <Modal isOpen={modal} toggle={() => dispatch(toggle(!modal))}>
-                <ModalHeader toggle={() => dispatch(toggle(!modal))}>Create Task</ModalHeader>
+            <Modal isOpen={createModal} toggle={() => dispatch(toggleCreate(!createModal))}>
+                <ModalHeader toggle={() => dispatch(toggleCreate(!createModal))}>
+                    Create Task
+                </ModalHeader>
                 <ModalBody>
                     <InputGroup style={{marginBottom: "15px"}}>
                         <Input placeholder="task name"
@@ -98,4 +95,5 @@ const CreateModal = ({priority}) => {
         </div>
     );
 }
-export default CreateModal;
+
+export default CreateCard;
