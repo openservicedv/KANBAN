@@ -11,11 +11,6 @@ export const EditCard = () => {
 
     return (
         <div>
-            {/*<Button color="secondary"*/}
-            {/*        onClick={() => dispatch(toggle(!editModal))}>*/}
-            {/*    Edit*/}
-            {/*</Button>*/}
-
             <Modal isOpen={editModal} toggle={() => dispatch(toggleEdit(!editModal))}>
                 <ModalHeader toggle={() => dispatch(toggleEdit(!editModal))}>
                     Modal title
