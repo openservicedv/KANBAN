@@ -9,7 +9,7 @@ const KanbanColumn = ({column, priority}) => {
     return (
         <div className="col"
              style={{
-                 border: "solid black 3px",
+                 border: "solid black 5px",
                  background: "lightgreen",
                  // height: "0px",
                  width: "270px",

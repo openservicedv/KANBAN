@@ -5,7 +5,7 @@ export const saveTaskDescription = (payload) => ({type: "saveTaskDescription", p
 export const saveTaskStatus = (payload) => ({type: "saveTaskStatus", payload: payload})
 export const saveTaskPriority = (payload) => ({type: "saveTaskPriority", payload: payload})
 export const clearNewTask = (payload) => ({type: "clearNewTask", payload: payload})
-export const deleteTask = (payload) => ({type: "deleteTask", payload: payload})
+// export const deleteTask = (payload) => ({type: "deleteTask", payload: payload})
 export const toggle = (payload) => ({type: "toggle", payload: payload})
 export const patchTask = (payload, key, value) => ({type: "patchTask", payload: payload, key: key, value: value})
 // export const patchTask = (payload, key, step) => ({type: "patchTask", payload: payload, key: key, step: step})

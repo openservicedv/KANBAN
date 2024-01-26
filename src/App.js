@@ -17,13 +17,10 @@ function App() {
     useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
-    }, [dispatch]);
-
-    useEffect(() => {
-        console.log(updatedTask)
-        dispatch(asyncPatchTask(updatedTask))
+        if ((Object.keys(updatedTask).length !== 0)) {
+            dispatch(asyncPatchTask(updatedTask))
+        }
     }, [dispatch, updatedTask]);
-
 
     return (
         <div className="App"
@@ -31,6 +28,7 @@ function App() {
                  border: "dashed black",
                  margin: "5px",
                  padding: "5px",
+                 width: "1240px",
              }}
         >
             <h1>Kanban Board</h1>
