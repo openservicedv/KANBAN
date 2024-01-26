@@ -2,8 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import {useDispatch, useSelector} from "react-redux";
-import {asyncDeleteTask} from "../asyncActions/asyncDeleteTask";
-import {patchTask, toggleEdit} from "../store/actions";
+import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
+import {patchTask} from "../store/actions";
+import {handleEditTaskName} from "../controllers/handleEditTaskName";
+import {EditCard} from "./EditCard";
 
 const KanbanCard = ({task, priority}) => {
     const dispatch = useDispatch()
@@ -26,7 +28,7 @@ const KanbanCard = ({task, priority}) => {
     return (
         <div className="card"
              style={{
-                 // border: "solid",
+                 border: "solid"
              }}>
             <div className="card-body"
                  style={{
@@ -41,7 +43,6 @@ const KanbanCard = ({task, priority}) => {
                          border: "dashed blue",
                          width: "243px",
                          marginBottom: "5px",
-
                      }}>
                     <h5 className="card-title"
                         style={{
@@ -49,12 +50,13 @@ const KanbanCard = ({task, priority}) => {
 
                         }}>{task.name}</h5>
                     <Button variant="outline-secondary"
-                            onClick={() => dispatch(toggleEdit(!editModal))}
-                            // onClick={() => handleEdit(task, "name", -1)}
+                            onClick={() => handleEditTaskName(task, dispatch, editModal)}
                     >
                         Edit
                     </Button>
-
+                    <EditCard
+                        task={task}
+                    />
                 </div>
                 <p className="card-text"
                    style={{
@@ -89,7 +91,6 @@ const KanbanCard = ({task, priority}) => {
                 <div className="d-flex justify-content-start"
                      style={{
                          border: "dashed red",
-
                      }}
                 >
                     <Button
@@ -112,11 +113,6 @@ const KanbanCard = ({task, priority}) => {
                         →
                     </Button>
                 </div>
-                {/*<p className="card-text"*/}
-                {/*   style={{*/}
-                {/*       border: "solid red",*/}
-
-                {/*   }}>priority: {task.status}</p>*/}
             </div>
         </div>
     );

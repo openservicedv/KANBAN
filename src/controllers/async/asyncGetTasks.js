@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getTasks} from "../store/actions";
+import {getTasks} from "../../store/actions";
 
 export const asyncGetTasks = () => {
     return function (dispatch) {

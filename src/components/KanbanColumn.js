@@ -2,8 +2,9 @@ import React from 'react';
 import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
+import {EditCard} from "./EditCard";
 
-const KanbanColumn = ({column, priority}) => {
+export const KanbanColumn = ({column, priority}) => {
     const tasks = useSelector(state => state.taskReducer.tasks)
 
     return (
@@ -16,6 +17,7 @@ const KanbanColumn = ({column, priority}) => {
                  margin: "5px",
                  padding: "5px",
              }}>
+
             <div className="d-flex justify-content-between align-items-end"
                  style={{
                      border: "dashed blue 1px",
@@ -51,11 +53,8 @@ const KanbanColumn = ({column, priority}) => {
                                 task={el}
                                 priority={priority}
                     />
-                ))}
-
-
+                ))
+            }
         </div>
     );
 };
-
-export default KanbanColumn;

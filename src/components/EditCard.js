@@ -1,28 +1,38 @@
 import React from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {toggleEdit} from "../store/actions"
+import {saveTaskName, toggleEdit} from "../store/actions"
 
-export const EditCard = () => {
+export const EditCard = ({task}) => {
 
     const dispatch = useDispatch();
-    // const updatedTask = useSelector(state => state.cardReducer.updatedTask)
     const editModal = useSelector(state => state.cardReducer.editModal)
+    const taskName = useSelector(state => state.taskReducer.newTask.name)
 
     return (
         <div>
-            <Modal isOpen={editModal} toggle={() => dispatch(toggleEdit(!editModal))}>
-                <ModalHeader toggle={() => dispatch(toggleEdit(!editModal))}>
-                    Modal title
+            <Modal isOpen={editModal} toggle={() =>
+                dispatch(toggleEdit(!editModal))}>
+                <ModalHeader toggle={() =>
+                    dispatch(toggleEdit(!editModal))}>
+                    Edit card
                 </ModalHeader>
                 <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    <InputGroup style={{marginBottom: "15px"}}>
+                        <Input
+                            type="text"
+                            value={taskName}
+                            onChange={(event) =>
+                                dispatch(saveTaskName(event.target.value))}/>
+                    </InputGroup>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={() => dispatch(toggleEdit(!editModal))}>
+                    <Button color="primary" onClick={() =>
+                        dispatch(toggleEdit(!editModal))}>
                         Do Something
                     </Button>{' '}
-                    <Button color="secondary" onClick={() => dispatch(toggleEdit(!editModal))}>
+                    <Button color="secondary" onClick={() =>
+                        dispatch(toggleEdit(!editModal))}>
                         Cancel
                     </Button>
                 </ModalFooter>

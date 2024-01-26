@@ -3,15 +3,15 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} f
 import Form from 'react-bootstrap/Form';
 
 import {useDispatch, useSelector} from "react-redux";
-import {asyncPostTask} from "../asyncActions/asyncPostTask";
+import {asyncPostTask} from "../controllers/async/asyncPostTask";
 import {
     clearNewTask,
     saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus,
     toggleCreate
 } from "../store/actions";
-import {asyncReturnLost} from "../asyncActions/asyncReturnLost";
+import {asyncReturnLost} from "../controllers/async/asyncReturnLost";
 
-const CreateCard = ({priority}) => {
+export const CreateCard = ({priority}) => {
 
     const statuses = useSelector(state => state.statusReducer.statuses)
     const tasks = useSelector(state => state.taskReducer.tasks)
@@ -94,6 +94,4 @@ const CreateCard = ({priority}) => {
             </Modal>
         </div>
     );
-}
-
-export default CreateCard;
+};

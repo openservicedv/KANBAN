@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getStatuses} from "../store/actions";
+import {getStatuses} from "../../store/actions";
 
 export const asyncGetStatuses = () => {
     return function (dispatch) {

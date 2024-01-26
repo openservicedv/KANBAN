@@ -1,12 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import KanbanColumn from "./components/KanbanColumn";
-import CreateCard from "./components/CreateCard";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {asyncGetTasks} from "./asyncActions/asyncGetTasks";
-import {asyncGetStatuses} from "./asyncActions/asyncGetStatuses";
-import {asyncPatchTask} from "./asyncActions/asyncPatchTask";
+import {KanbanColumn} from "./components/KanbanColumn";
+import {CreateCard} from "./components/CreateCard";
+import {asyncGetStatuses} from "./controllers/async/asyncGetStatuses";
+import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
+import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 import {EditCard} from "./components/EditCard";
 
 function App() {
@@ -35,8 +35,6 @@ function App() {
             <h1>Kanban Board</h1>
             <CreateCard
                 priority={priority}
-            />
-            <EditCard
             />
             <div className="container text-center"
                  style={{
