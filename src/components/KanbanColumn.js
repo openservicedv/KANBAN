@@ -9,40 +9,30 @@ export const KanbanColumn = ({column, priority}) => {
     return (
         <div className="col"
              style={{
-                 border: "solid gray 1px",
+                 border: "solid gray 1PX",
                  borderRadius: "10px",
                  background: "#EEEDEDFF",
-                 // height: "0px",
-                 width: "270px",
                  margin: "5px",
                  padding: "5px",
              }}>
 
             <div className="d-flex justify-content-between align-items-center"
                  style={{
-                     // border: "solid gray 1px",
-                     borderRadius: "5px",
-                     marginBottom: "5px",
-                     width: "270px",
-                     height: "45px",
+                     // border: "DASHED BLUE 1PX",
+                     margin: "5px",
                  }}>
                 <h4
                     style={{
-                        // border: "dashed red 1px",
+                        // border: "DASHED RED 1PX",
                         width: "200px",
-                        // height: "40px",
-                        // marginBottom: "5px",
-                        // textAlign: "center",
-                        // verticalAlign: "center",
-                    }}>{column.title}</h4>
+                        textAlign: "center",
+                    }}>
+                    {column.title}</h4>
                 <Button variant="warning"
                         style={{
                             border: "solid gray 1px",
                             width: "40px",
                             height: "40px",
-                            // background: "white"
-                            // marginBottom: "5px",
-                            // textAlign: "center",
                         }}
                 > ...
                 </Button>

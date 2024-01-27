@@ -36,71 +36,76 @@ const KanbanCard = ({task, priority}) => {
     return (
         <div className="card"
              style={{
-                 border: "solid gray 1px",
+                 border: "solid gray 2px",
                  margin: "5px",
                  marginBottom: "10px",
                  borderRadius: "10px",
              }}>
-            <div className="card-body d-flex flex-column justify-content-between"
+            <div className="card-body d-flex flex-column justify-content-around"
                  style={{
-                     height: "260px",
-                     width: "273px",
+                     // border: "DASHED GRAY 1PX",
                  }}>
+
                 <div className="d-flex justify-content-between"
                      style={{
-                         // border: "dashed blue",
-                         height: "70px",
-                         width: "243px",
-                         marginBottom: "5px",
+                         // border: "DASHED BLUE 1PX",
+                         height: "50px",
                      }}>
                     <h5 className="card-title"
                         style={{
-                            // border: "solid red",
-                            width: "165px",
+                            // border: "DASHED GRAY 1PX",
                             textAlign: "left"
                         }}>
                         {task.name}</h5>
                     <Button variant="warning"
                             onClick={() => handleEditModal(task)}
                             style={{
-                                border: "solid gray 1px",
+                                border: "solid yellow 1px",
                                 height: "40px",
-                                width: "70px",
+                                width: "80px",
                             }}>
                         Edit
                     </Button>
                 </div>
+
                 <p className="card-text"
                    style={{
-                       border: "solid gray",
-                       borderRadius: "30px",
-                       background: "#F5DB95FF",
-                       height: "55px",
+                       // border: "solid gray 1px",
+                       borderRadius: "5px",
+                       // background: "lightgray",
+                       height: "40px",
                        textAlign: "center",
-                       verticalAlign: "bottom",
+                       // verticalAlign: "bottom",
+                       padding: "10px"
                    }}>
                     {task.description}</p>
-                <div className="d-flex justify-content-start align-items-center"
+
+                <div className="d-flex justify-content-between align-items-center"
                      style={{
-                         // border: "dashed green",
-                         marginBottom: "10px",
+                         // border: "DASHED GRAY 1PX",
+                         width: "200px",
+                         height: "50px",
+                         marginBottom: "5px"
                      }}>
-                    <p className="card-text"
-                       style={{
-                           // border: "solid blue",
-                           marginRight: "16px",
-                       }}>
-                        priority: {task.priority}
-                    </p>
                     <Button variant="outline-secondary"
                             disabled={task.priority === priority[0]}
                             onClick={() => handlePatch(task, "priority", -1)}
-                            style={{
-                                marginRight: "10px",
-                            }}
                     >
                         ↓
                     </Button>
+                    <p className="card-text"
+                       style={{
+                           border: "solid gray 1px",
+                           borderRadius: "5px",
+                           background: "#F5DB95FF",
+                           height: "30px",
+                           textAlign: "center",
+                           verticalAlign: "middle",
+                           marginTop: "15px",
+                           width: "110px",
+                       }}>
+                        priority: {task.priority}
+                    </p>
                     <Button variant="outline-secondary"
                             disabled={task.priority === priority[priority.length - 1]}
                             onClick={() => handlePatch(task, "priority", 1)}
@@ -108,9 +113,10 @@ const KanbanCard = ({task, priority}) => {
                         ↑
                     </Button>
                 </div>
-                <div className="d-flex justify-content-start"
+                <div className="d-flex justify-content-center"
                      style={{
-                         // border: "dashed red",
+                         // border: "DASHED GRAY 1PX",
+                         width: "200px",
                      }}
                 >
                     <Button
@@ -118,7 +124,7 @@ const KanbanCard = ({task, priority}) => {
                         variant="outline-secondary"
                         onClick={() => handlePatch(task, "status", -1)}
                         style={{
-                            marginRight: "10px",
+                            marginRight: "7px",
                         }}
                     >
                         ←
@@ -126,8 +132,10 @@ const KanbanCard = ({task, priority}) => {
                     <Button variant="danger"
                             onClick={() => dispatch(asyncDeleteTask(task._id))}
                             style={{
-                                marginRight: "10px",
-                                border: "solid gray 1px",
+                                // marginRight: "10px",
+                                border: "solid white 1px",
+                                // height: "0px",
+                                width: "80px",
                             }}
                     >
                         Delete
@@ -136,6 +144,9 @@ const KanbanCard = ({task, priority}) => {
                         disabled={task.status === statuses[statuses.length - 1].status}
                         variant="outline-secondary"
                         onClick={() => handlePatch(task, "status", 1)}
+                        style={{
+                            marginLeft: "7px",
+                        }}
                     >
                         →
                     </Button>
