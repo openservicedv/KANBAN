@@ -1,14 +1,14 @@
 import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {patchTask, saveTaskName, toggleEdit} from "../store/actions"
+import {clearNewTask, patchTask, saveTaskName, toggleEdit} from "../store/actions"
 import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 
 export const EditCard = () => {
 
     const dispatch = useDispatch();
-    const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
     const newTask = useSelector(state => state.taskReducer.newTask)
+    const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
 
     const handleSaveEditModal = () => {
         dispatch(toggleEdit(!isEditModalOpen))

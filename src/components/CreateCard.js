@@ -12,11 +12,11 @@ import {
 
 export const CreateCard = () => {
 
+    const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = useSelector(state => state.statusReducer.priority)
     const newTask = useSelector(state => state.taskReducer.newTask)
     const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
-    const dispatch = useDispatch()
 
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
