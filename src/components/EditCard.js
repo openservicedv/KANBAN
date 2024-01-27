@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {clearNewTask, patchTask, saveTaskName, toggleEdit} from "../store/actions"
 import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 
 export const EditCard = () => {
