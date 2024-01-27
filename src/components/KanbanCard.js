@@ -24,9 +24,9 @@ const KanbanCard = ({task, priority}) => {
     }
 
     const handlePatch = (task, key, step) => {
-        console.log(task)
-        console.log(key)
-        console.log(step)
+        // console.log(task)
+        // console.log(key)
+        // console.log(step)
         if (key === "status") {
             for (let i = 0; i < statuses.length; i++) {
                 if (statuses[i].status === task.status) {
@@ -38,7 +38,6 @@ const KanbanCard = ({task, priority}) => {
         } else if (key === "name") {
             dispatch(patchTask(task, key, "hello!"))
         }
-        console.log(newTask)
     }
 
     return (
