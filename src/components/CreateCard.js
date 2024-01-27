@@ -31,8 +31,10 @@ export const CreateCard = ({priority}) => {
 
     return (
         <div>
-            <Modal isOpen={isCreateModalOpen} toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
-                <ModalHeader toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
+            <Modal isOpen={isCreateModalOpen} toggle={() =>
+                dispatch(toggleCreate(!isCreateModalOpen))}>
+                <ModalHeader toggle={() =>
+                    dispatch(toggleCreate(!isCreateModalOpen))}>
                     Create Task
                 </ModalHeader>
                 <ModalBody>

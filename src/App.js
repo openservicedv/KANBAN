@@ -10,10 +10,11 @@ import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 import {Button} from "reactstrap";
 import {asyncReturnLost} from "./controllers/async/asyncReturnLost";
 import {toggleCreate} from "./store/actions";
+import {EditCard} from "./components/EditCard";
 
 function App() {
 
-    const priority = Array(10).fill(0).map((el, index) => index)
+    // const priority = Array(10).fill(0).map((el, index) => index)
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const newTask = useSelector(state => state.taskReducer.newTask)
@@ -39,7 +40,9 @@ function App() {
         >
             <h1>Kanban Board</h1>
             <CreateCard
-                priority={priority}
+                // priority={priority}
+            />
+            <EditCard
             />
             <div className="container text-center"
                  style={{
@@ -78,7 +81,7 @@ function App() {
                     {statuses.map((el) => (
                         <KanbanColumn key={el._id}
                                       column={el}
-                                      priority={priority}
+                                      // priority={priority}
                         />))}
                 </div>
             </div>
