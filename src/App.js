@@ -38,8 +38,11 @@ function App() {
              }}
         >
             <h1>Kanban Board</h1>
+
             <CreateCard />
+
             <EditCard />
+
             <div className="container text-center"
                  style={{
                      // border: "DASHED GRAY 2PX",
@@ -77,7 +80,6 @@ function App() {
                     {statuses.map((el) => (
                         <KanbanColumn key={el._id}
                                       column={el}
-                                      // priority={priority}
                         />))}
                 </div>
             </div>

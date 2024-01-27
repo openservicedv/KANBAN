@@ -1,6 +1,6 @@
 const defaultState = {
     tasks: [],
-    newTask: {},
+    newTask: {}
 }
 export const taskReducer = (state = defaultState, action) => {
     switch (action.type) {
