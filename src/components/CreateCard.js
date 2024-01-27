@@ -9,12 +9,10 @@ import {
     saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus,
     toggleCreate
 } from "../store/actions";
-import {asyncReturnLost} from "../controllers/async/asyncReturnLost";
 
 export const CreateCard = ({priority}) => {
 
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const tasks = useSelector(state => state.taskReducer.tasks)
     const newTask = useSelector(state => state.taskReducer.newTask)
     const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
     const dispatch = useDispatch()
@@ -26,7 +24,6 @@ export const CreateCard = ({priority}) => {
             dispatch(toggleCreate(!isCreateModalOpen))
         }
     }
-
     const handleCancel = () => {
         dispatch(clearNewTask({}))
         dispatch(toggleCreate(!isCreateModalOpen))
