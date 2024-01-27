@@ -3,8 +3,9 @@ import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
 
-export const KanbanColumn = ({column, priority}) => {
+export const KanbanColumn = ({column}) => {
     const tasks = useSelector(state => state.taskReducer.tasks)
+    const priority = useSelector(state => state.statusReducer.priority)
 
     return (
         <div className="col"

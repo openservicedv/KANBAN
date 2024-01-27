@@ -10,9 +10,10 @@ import {
     toggleCreate
 } from "../store/actions";
 
-export const CreateCard = ({priority}) => {
+export const CreateCard = () => {
 
     const statuses = useSelector(state => state.statusReducer.statuses)
+    const priority = useSelector(state => state.statusReducer.priority)
     const newTask = useSelector(state => state.taskReducer.newTask)
     const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
     const dispatch = useDispatch()

@@ -14,7 +14,6 @@ import {EditCard} from "./components/EditCard";
 
 function App() {
 
-    // const priority = Array(10).fill(0).map((el, index) => index)
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const newTask = useSelector(state => state.taskReducer.newTask)
@@ -39,11 +38,8 @@ function App() {
              }}
         >
             <h1>Kanban Board</h1>
-            <CreateCard
-                // priority={priority}
-            />
-            <EditCard
-            />
+            <CreateCard />
+            <EditCard />
             <div className="container text-center"
                  style={{
                      // border: "DASHED GRAY 2PX",
