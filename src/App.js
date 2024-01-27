@@ -9,6 +9,7 @@ import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
 import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 
 function App() {
+
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const newTask = useSelector(state => state.taskReducer.newTask)
