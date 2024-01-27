@@ -20,8 +20,10 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(asyncPatchTask(newTask))
-        console.log("сработал asyncPatchTask")
+        if ((Object.keys(newTask).length !== 0)) {
+            dispatch(asyncPatchTask(newTask))
+            console.log("сработал asyncPatchTask")
+        }
     }, [dispatch, newTask]);
 
     return (
