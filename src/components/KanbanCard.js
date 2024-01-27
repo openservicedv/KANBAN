@@ -38,14 +38,11 @@ const KanbanCard = ({task, priority}) => {
              style={{
                  border: "solid gray 1px",
                  margin: "5px",
+                 marginBottom: "10px",
                  borderRadius: "10px",
-                 // background: "#D6E0F5FF",
              }}>
             <div className="card-body d-flex flex-column justify-content-between"
                  style={{
-                     // border: "brown solid",
-                     // background: "lightgray",
-                     // marginBottom: "10px",
                      height: "260px",
                      width: "273px",
                  }}>
@@ -86,12 +83,12 @@ const KanbanCard = ({task, priority}) => {
                 <div className="d-flex justify-content-start align-items-center"
                      style={{
                          // border: "dashed green",
-                         marginBottom: "5px",
+                         marginBottom: "10px",
                      }}>
                     <p className="card-text"
                        style={{
                            // border: "solid blue",
-                           marginRight: "10px",
+                           marginRight: "16px",
                        }}>
                         priority: {task.priority}
                     </p>
@@ -99,7 +96,7 @@ const KanbanCard = ({task, priority}) => {
                             disabled={task.priority === priority[0]}
                             onClick={() => handlePatch(task, "priority", -1)}
                             style={{
-                                marginRight: "5px",
+                                marginRight: "10px",
                             }}
                     >
                         ↓
@@ -121,7 +118,7 @@ const KanbanCard = ({task, priority}) => {
                         variant="outline-secondary"
                         onClick={() => handlePatch(task, "status", -1)}
                         style={{
-                            marginRight: "5px",
+                            marginRight: "10px",
                         }}
                     >
                         ←
@@ -129,7 +126,8 @@ const KanbanCard = ({task, priority}) => {
                     <Button variant="danger"
                             onClick={() => dispatch(asyncDeleteTask(task._id))}
                             style={{
-                                marginRight: "5px",
+                                marginRight: "10px",
+                                border: "solid gray 1px",
                             }}
                     >
                         Delete
