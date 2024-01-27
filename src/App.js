@@ -7,21 +7,22 @@ import {CreateCard} from "./components/CreateCard";
 import {asyncGetStatuses} from "./controllers/async/asyncGetStatuses";
 import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
 import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
-import {EditCard} from "./components/EditCard";
 
 function App() {
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const updatedTask = useSelector(state => state.cardReducer.updatedTask)
+    const newTask = useSelector(state => state.taskReducer.newTask)
     const priority = Array(10).fill(0).map((el, index) => index)
 
     useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
-        if ((Object.keys(updatedTask).length !== 0)) {
-            dispatch(asyncPatchTask(updatedTask))
-        }
-    }, [dispatch, updatedTask]);
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(asyncPatchTask(newTask))
+        console.log("сработал asyncPatchTask")
+    }, [dispatch, newTask]);
 
     return (
         <div className="App"

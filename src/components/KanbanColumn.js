@@ -2,7 +2,6 @@ import React from 'react';
 import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
-import {EditCard} from "./EditCard";
 
 export const KanbanColumn = ({column, priority}) => {
     const tasks = useSelector(state => state.taskReducer.tasks)

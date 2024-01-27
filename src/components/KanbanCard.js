@@ -3,17 +3,30 @@ import Button from 'react-bootstrap/Button';
 
 import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
-import {patchTask} from "../store/actions";
-import {handleEditTaskName} from "../controllers/handleEditTaskName";
+import {patchTask, saveTaskId, saveTaskName, toggleEdit} from "../store/actions";
 import {EditCard} from "./EditCard";
+import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 
 const KanbanCard = ({task, priority}) => {
+
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const editModal = useSelector(state => state.cardReducer.editModal)
+    const newTask = useSelector(state => state.taskReducer.newTask)
+    const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
+
+    const handleEditModal = (task) => {
+        console.log(task._id)
+        dispatch(toggleEdit(!isEditModalOpen))
+        dispatch(saveTaskId(task._id))
+        dispatch(saveTaskName(task.name))
+
+
+    }
 
     const handlePatch = (task, key, step) => {
-        // console.log(task.status)
+        console.log(task)
+        console.log(key)
+        console.log(step)
         if (key === "status") {
             for (let i = 0; i < statuses.length; i++) {
                 if (statuses[i].status === task.status) {
@@ -22,7 +35,10 @@ const KanbanCard = ({task, priority}) => {
             }
         } else if (key === "priority") {
             dispatch(patchTask(task, key, task.priority + step))
+        } else if (key === "name") {
+            dispatch(patchTask(task, key, "hello!"))
         }
+        console.log(newTask)
     }
 
     return (
@@ -50,13 +66,10 @@ const KanbanCard = ({task, priority}) => {
 
                         }}>{task.name}</h5>
                     <Button variant="outline-secondary"
-                            onClick={() => handleEditTaskName(task, dispatch, editModal)}
+                            onClick={() => handleEditModal(task)}
                     >
                         Edit
                     </Button>
-                    <EditCard
-                        task={task}
-                    />
                 </div>
                 <p className="card-text"
                    style={{
@@ -112,6 +125,9 @@ const KanbanCard = ({task, priority}) => {
                     >
                         →
                     </Button>
+                    <EditCard
+                        task={task}
+                    />
                 </div>
             </div>
         </div>

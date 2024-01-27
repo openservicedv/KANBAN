@@ -7,6 +7,7 @@ export const asyncGetStatuses = () => {
             .then((res) => {
                 // console.log(res.data)
                 dispatch(getStatuses(res.data))
+                console.log(res.data)
             })
             .catch((e) => {
                 console.log(e)

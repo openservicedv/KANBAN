@@ -16,20 +16,20 @@ export const CreateCard = ({priority}) => {
     const statuses = useSelector(state => state.statusReducer.statuses)
     const tasks = useSelector(state => state.taskReducer.tasks)
     const newTask = useSelector(state => state.taskReducer.newTask)
-    const createModal = useSelector(state => state.cardReducer.createModal)
+    const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
     const dispatch = useDispatch()
 
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
             dispatch(clearNewTask({}))
-            dispatch(toggleCreate(!createModal))
+            dispatch(toggleCreate(!isCreateModalOpen))
         }
     }
 
     const handleCancel = () => {
         dispatch(clearNewTask({}))
-        dispatch(toggleCreate(!createModal))
+        dispatch(toggleCreate(!isCreateModalOpen))
     }
 
     return (
@@ -46,12 +46,12 @@ export const CreateCard = ({priority}) => {
                 >Return all lost tasks
                 </Button>
                 <Button color="danger"
-                        onClick={() => dispatch(toggleCreate(!createModal))}
+                        onClick={() => dispatch(toggleCreate(!isCreateModalOpen))}
                 >Create Task
                 </Button>
             </div>
-            <Modal isOpen={createModal} toggle={() => dispatch(toggleCreate(!createModal))}>
-                <ModalHeader toggle={() => dispatch(toggleCreate(!createModal))}>
+            <Modal isOpen={isCreateModalOpen} toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
+                <ModalHeader toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
                     Create Task
                 </ModalHeader>
                 <ModalBody>
@@ -84,7 +84,7 @@ export const CreateCard = ({priority}) => {
                     </Form.Select>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={handleSave}>
+                    <Button color="success" onClick={handleSave}>
                         Save
                     </Button>{' '}
                     <Button color="danger" onClick={handleCancel}>
