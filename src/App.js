@@ -28,12 +28,12 @@ function App() {
     }, [dispatch, newTask]);
 
     return (
-        <div className="App"
+        <div className="App "
              style={{
-                 border: "dashed black",
+                 // border: "dashed black",
                  margin: "5px",
                  padding: "5px",
-                 width: "1240px",
+                 width: "1224px",
              }}
         >
             <h1>Kanban Board</h1>
@@ -42,7 +42,7 @@ function App() {
             />
             <div className="container text-center"
                  style={{
-                     border: "dashed black 3px",
+                     // border: "dashed black 3px",
                      margin: "5px",
                      padding: "5px",
                      width: "1200px",
@@ -51,8 +51,8 @@ function App() {
             >
                 <div className="row align-items-start"
                      style={{
-                         border: "solid gray",
-                         background: "lightyellow",
+                         // border: "solid gray",
+                         // background: "lightyellow",
                          // margin: "5px",
                          // padding: "5px",
 

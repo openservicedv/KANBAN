@@ -34,19 +34,28 @@ export const CreateCard = ({priority}) => {
 
     return (
         <div>
-            <div className="d-flex justify-content-around"
+            <div className="d-flex justify-content-end"
                  style={{
-                     border: "dashed blue",
-                     // width: "600px",
+                     // border: "dashed blue",
+                     width: "1205px",
                      // marginBottom: "5px",
 
                  }}>
                 <Button color="warning"
                         onClick={() => asyncReturnLost(tasks, dispatch)}
-                >Return all lost tasks
+                        style={{
+                            marginRight: "10px",
+                            border: "solid gray 1px",
+                        }}
+
+                >Find if lost
                 </Button>
                 <Button color="danger"
                         onClick={() => dispatch(toggleCreate(!isCreateModalOpen))}
+                        style={{
+                            marginRight: "0",
+                            border: "solid gray 1px",
+                        }}
                 >Create Task
                 </Button>
             </div>

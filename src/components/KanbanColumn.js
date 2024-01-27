@@ -9,19 +9,21 @@ export const KanbanColumn = ({column, priority}) => {
     return (
         <div className="col"
              style={{
-                 border: "solid black 5px",
-                 background: "lightgreen",
+                 border: "solid gray 1px",
+                 borderRadius: "10px",
+                 background: "#EEEDEDFF",
                  // height: "0px",
                  width: "270px",
                  margin: "5px",
                  padding: "5px",
              }}>
 
-            <div className="d-flex justify-content-between align-items-end"
+            <div className="d-flex justify-content-between align-items-center"
                  style={{
-                     border: "dashed blue 1px",
+                     // border: "solid gray 1px",
+                     borderRadius: "5px",
                      marginBottom: "5px",
-                     width: "250px",
+                     width: "270px",
                      height: "45px",
                  }}>
                 <h4
@@ -33,16 +35,16 @@ export const KanbanColumn = ({column, priority}) => {
                         // textAlign: "center",
                         // verticalAlign: "center",
                     }}>{column.title}</h4>
-                <Button variant="outline-secondary"
+                <Button variant="warning"
                         style={{
-                            // border: "dashed red 1px",
-                            // width: "30px",
-                            // height: "30px",
+                            border: "solid gray 1px",
+                            width: "40px",
+                            height: "40px",
+                            // background: "white"
                             // marginBottom: "5px",
                             // textAlign: "center",
                         }}
-                >
-                    ...
+                > ...
                 </Button>
             </div>
             {tasks

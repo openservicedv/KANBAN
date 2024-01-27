@@ -36,8 +36,10 @@ const KanbanCard = ({task, priority}) => {
     return (
         <div className="card"
              style={{
-                 // border: "solid"
-                 marginBottom: "5px",
+                 border: "solid gray 1px",
+                 margin: "5px",
+                 borderRadius: "10px",
+                 // background: "#D6E0F5FF",
              }}>
             <div className="card-body d-flex flex-column justify-content-between"
                  style={{
@@ -64,6 +66,7 @@ const KanbanCard = ({task, priority}) => {
                     <Button variant="warning"
                             onClick={() => handleEditModal(task)}
                             style={{
+                                border: "solid gray 1px",
                                 height: "40px",
                                 width: "70px",
                             }}>
@@ -73,10 +76,11 @@ const KanbanCard = ({task, priority}) => {
                 <p className="card-text"
                    style={{
                        border: "solid gray",
-                       borderRadius: "20px",
+                       borderRadius: "30px",
+                       background: "#F5DB95FF",
                        height: "55px",
                        textAlign: "center",
-                       verticalAlign: "center",
+                       verticalAlign: "bottom",
                    }}>
                     {task.description}</p>
                 <div className="d-flex justify-content-start align-items-center"
