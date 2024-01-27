@@ -5,13 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
 import {patchTask, saveTaskId, saveTaskName, toggleEdit} from "../store/actions";
 import {EditCard} from "./EditCard";
-import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 
 const KanbanCard = ({task, priority}) => {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const newTask = useSelector(state => state.taskReducer.newTask)
     const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
 
     const handleEditModal = (task) => {
