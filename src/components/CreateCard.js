@@ -31,33 +31,6 @@ export const CreateCard = ({priority}) => {
 
     return (
         <div>
-            {/*<div className="d-flex justify-content-end"*/}
-            {/*     style={{*/}
-            {/*         border: "DASHED GRAY 1PX",*/}
-            {/*         // width: "1205px",*/}
-            {/*         // marginBottom: "5px",*/}
-
-            {/*     }}>*/}
-            {/*    <Button color="warning"*/}
-            {/*            onClick={() => asyncReturnLost(tasks, dispatch)}*/}
-            {/*            style={{*/}
-            {/*                marginRight: "10px",*/}
-            {/*                width: "120px",*/}
-            {/*                border: "solid gray 1px",*/}
-            {/*            }}*/}
-
-            {/*    >Find if lost*/}
-            {/*    </Button>*/}
-            {/*    <Button color="danger"*/}
-            {/*            onClick={() => dispatch(toggleCreate(!isCreateModalOpen))}*/}
-            {/*            style={{*/}
-            {/*                marginRight: "0",*/}
-            {/*                width: "120px",*/}
-            {/*                border: "solid gray 1px",*/}
-            {/*            }}*/}
-            {/*    >Create Task*/}
-            {/*    </Button>*/}
-            {/*</div>*/}
             <Modal isOpen={isCreateModalOpen} toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
                 <ModalHeader toggle={() => dispatch(toggleCreate(!isCreateModalOpen))}>
                     Create Task
