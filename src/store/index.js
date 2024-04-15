@@ -3,11 +3,11 @@ import {composeWithDevTools} from "@redux-devtools/extension";
 import {thunk} from "redux-thunk";
 import {statusReducer} from "./statusReducer";
 import {taskReducer} from "./taskReducer";
-import {toggleReducer} from "./toggleReducer";
 
-const rootReducers = combineReducers({
+const rootReducer = combineReducers({
     statusReducer,
     taskReducer,
-    toggleReducer,
 })
-export const store = legacy_createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)))
+export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+
+// export type RootState = ReturnType<typeof store.getState>

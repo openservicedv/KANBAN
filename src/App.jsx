@@ -1,29 +1,30 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {KanbanColumn} from "./components/KanbanColumn";
-import {CreateCard} from "./components/CreateCard";
+import {CreateModal} from "./components/CreateModal";
 import {asyncGetStatuses} from "./controllers/async/asyncGetStatuses";
 import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
 // import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 import {Button} from "reactstrap";
 import {asyncReturnLost} from "./controllers/async/asyncReturnLost";
-import {toggleCreate} from "./store/actions";
-import {EditCard} from "./components/EditCard";
+import {EditModal} from "./components/EditModal";
 
 function App() {
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     // const newTask = useSelector(state => state.taskReducer.newTask)
     const tasks = useSelector(state => state.taskReducer.tasks)
-    const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
 
     useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
-    }, [dispatch]);
+        console.log("отработала функция ДИСПАТЧ")
+    }, []);
 
     return (
         <div className="App "
@@ -31,8 +32,14 @@ function App() {
                  // border: "DASHED GRAY 1PX",
              }}>
             <h1>Kanban Board</h1>
-            <CreateCard/>
-            <EditCard/>
+            <CreateModal
+                isCreateModalOpen={isCreateModalOpen}
+                setIsCreateModalOpen={setIsCreateModalOpen}
+            />
+            <EditModal
+                isEditModalOpen={isEditModalOpen}
+                setIsEditModalOpen={setIsEditModalOpen}
+            />
             <div className="container text-center"
                  style={{
                      // border: "DASHED GRAY 2PX",
@@ -52,7 +59,7 @@ function App() {
                         Find
                     </Button>
                     <Button color="danger"
-                            onClick={() => dispatch(toggleCreate(!isCreateModalOpen))}
+                            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
                             style={{
                                 marginRight: "0",
                                 width: "80px",
@@ -68,6 +75,8 @@ function App() {
                     {statuses.map((el) => (
                         <KanbanColumn key={el._id}
                                       column={el}
+                                      isEditModalOpen={isEditModalOpen}
+                                      setIsEditModalOpen={setIsEditModalOpen}
                         />))}
                 </div>
             </div>

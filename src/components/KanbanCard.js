@@ -3,18 +3,17 @@ import Button from 'react-bootstrap/Button';
 
 import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
-import {patchTask, saveTaskId, saveTaskName, toggleEdit} from "../store/actions";
+import {patchTask, saveTaskId, saveTaskName} from "../store/actions";
 
-const KanbanCard = ({task}) => {
+const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = useSelector(state => state.statusReducer.priority)
-    const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
 
     const handleEditModal = (task) => {
         // console.log(task._id)
-        dispatch(toggleEdit(!isEditModalOpen))
+        setIsEditModalOpen(!isEditModalOpen)
         dispatch(saveTaskId(task._id))
         dispatch(saveTaskName(task.name))
     }
@@ -151,7 +150,7 @@ const KanbanCard = ({task}) => {
                         →
                     </Button>
 
-                    {/*<EditCard*/}
+                    {/*<EditModal*/}
                     {/*    task={task}*/}
                     {/*/>*/}
 

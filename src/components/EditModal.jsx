@@ -1,28 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {patchTask, saveTaskName, toggleEdit} from "../store/actions"
+import {patchTask, saveTaskName} from "../store/actions"
 import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 
-export const EditCard = () => {
-    const [taskName, setTaskName] = useState("")
+export const EditModal = ({isEditModalOpen, setIsEditModalOpen}) => {
+
     const dispatch = useDispatch();
     const newTask = useSelector(state => state.taskReducer.newTask)
-    const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
 
     return (
         <Modal isOpen={isEditModalOpen}
-               toggle={() => dispatch(toggleEdit())}>
-            <ModalHeader toggle={() => dispatch(toggleEdit())}>
+               toggle={() => setIsEditModalOpen(!isEditModalOpen)}>
+            <ModalHeader toggle={() => setIsEditModalOpen(!isEditModalOpen)}>
                 Edit card
             </ModalHeader>
             <ModalBody>
                 <InputGroup style={{marginBottom: "15px"}}>
                     <Input
                         type="text"
-                        value={taskName}
+                        value={newTask.name}
                         onChange={(event) =>
-                            setTaskName(event.target.value)
+                            dispatch(saveTaskName(event.target.value))
                         }/>
                 </InputGroup>
             </ModalBody>
@@ -30,17 +29,16 @@ export const EditCard = () => {
                 <Button color="success"
                         onClick={
                             () => {
-                                dispatch(saveTaskName(taskName))
-                                dispatch(asyncPatchTask(newTask))
                                 dispatch(patchTask(newTask, "name", newTask.name))
-                                dispatch(toggleEdit())
+                                dispatch(asyncPatchTask(newTask))
+                                setIsEditModalOpen(!isEditModalOpen)
                             }
                         }>
                     Save
                 </Button>{' '}
                 <Button color="danger"
                         onClick={
-                            () => dispatch(toggleEdit())
+                            () => setIsEditModalOpen(!isEditModalOpen)
                         }>
                     Cancel
                 </Button>

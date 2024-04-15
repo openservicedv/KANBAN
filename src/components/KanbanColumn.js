@@ -3,7 +3,7 @@ import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
 
-export const KanbanColumn = ({column}) => {
+export const KanbanColumn = ({column, isEditModalOpen, setIsEditModalOpen}) => {
     const tasks = useSelector(state => state.taskReducer.tasks)
     const priority = useSelector(state => state.statusReducer.priority)
 
@@ -43,7 +43,9 @@ export const KanbanColumn = ({column}) => {
                 .map(el => (
                     <KanbanCard key={el._id}
                                 task={el}
-                                priority={priority}
+                        priority={priority}
+                                isEditModalOpen={isEditModalOpen}
+                                setIsEditModalOpen={setIsEditModalOpen}
                     />
                 ))
             }

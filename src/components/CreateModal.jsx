@@ -1,41 +1,35 @@
-// import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
 import {useDispatch, useSelector} from "react-redux";
 import {asyncPostTask} from "../controllers/async/asyncPostTask";
-import {
-    clearNewTask,
-    saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus,
-    toggleCreate
-} from "../store/actions";
+import {clearNewTask, saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus} from "../store/actions";
 
-export const CreateCard = () => {
+export const CreateModal = ({isCreateModalOpen, setIsCreateModalOpen}) => {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = useSelector(state => state.statusReducer.priority)
     const newTask = useSelector(state => state.taskReducer.newTask)
-    const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
 
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
             dispatch(clearNewTask({}))
-            dispatch(toggleCreate())
+            setIsCreateModalOpen(!isCreateModalOpen)
         }
     }
     const handleCancel = () => {
         dispatch(clearNewTask({}))
-        dispatch(toggleCreate())
+        setIsCreateModalOpen(!isCreateModalOpen)
     }
 
     return (
         <div>
             <Modal isOpen={isCreateModalOpen} toggle={() =>
-                dispatch(toggleCreate())}>
+                setIsCreateModalOpen(!isCreateModalOpen)}>
                 <ModalHeader toggle={() =>
-                    dispatch(toggleCreate())}>
+                    setIsCreateModalOpen(!isCreateModalOpen)}>
                     Create Task
                 </ModalHeader>
                 <ModalBody>
