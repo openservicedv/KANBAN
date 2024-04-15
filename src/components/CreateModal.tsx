@@ -5,21 +5,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {asyncPostTask} from "../controllers/async/asyncPostTask";
 import {clearNewTask, saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus} from "../store/actions";
 import {StatusType, TaskType, Priority as priority} from "../types";
-// import {StatusReducerType} from "../store/statusReducer";
-// import {TaskReducerType} from "../store/taskReducer";
+import {AppStateType} from "../store";
 
 type PropsType = {
     isCreateModalOpen: boolean
     setIsCreateModalOpen: (isCreateModalOpen: boolean) => void
 }
+
 export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreateModalOpen}) => {
 
     const dispatch: any = useDispatch()
-    const statuses: any = useSelector((state: any) => state.statusReducer.statuses)
+    const statuses: StatusType[] = useSelector((state: AppStateType) => state.statusReducer.statuses)
+    const newTask: TaskType = useSelector((state: AppStateType) => state.taskReducer.newTask)
+
     console.log(statuses)
     console.log(useSelector((state: any) => state.statusReducer))
     console.log(priority)
-    const newTask: TaskType = useSelector((state: any) => state.newTask)
 
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
@@ -77,6 +78,5 @@ export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreate
                 </ModalFooter>
             </Modal>
         </div>
-    )
-        ;
+    );
 };

@@ -4,11 +4,12 @@ export type StatusReducerType = {
     statuses: StatusType[]
 }
 const defaultState: StatusReducerType = {
-    statuses: [],
+    statuses: []
 }
-export const statusReducer = (state = defaultState, action: any): StatusReducerType => {
+export const statusReducer = (state: StatusReducerType = defaultState, action: any): StatusReducerType => {
     switch (action.type) {
         case GET_STATUSES:
+            console.log(state)
             return {...state, statuses: [...action.payload]}
         default:
             return state;

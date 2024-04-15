@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
     statusReducer,
     taskReducer,
 })
-export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
-// export type RootState = ReturnType<typeof store.getState>
+export type AppStateType = ReturnType<typeof rootReducer>
+
+export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
