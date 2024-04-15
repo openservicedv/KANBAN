@@ -1,27 +1,27 @@
-import {GET_STATUSES} from "../types";
+import {GET_STATUSES, StatusType, TaskType} from "../types";
 import {
     CLEAR_NEW_TASK, GET_TASKS, PATCH_TASK, SAVE_TASK_ID, SAVE_TASK_NAME,
     SAVE_TASK_DESCRIPTION, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS
 } from "../types";
 
-export type ActionTypes = GetStatusesActionType |  GetTaskActionType | SaveTaskIdActionType |
+export type ActionTypes = GetTaskActionType | SaveTaskIdActionType |
     SaveTaskNameActionType | SaveTaskDescriptionActionType |SaveTaskStatusActionType |
     SaveTaskPriorityActionType | ClearTaskActionType | PatchTaskActionType
 
-type GetStatusesActionType = {
+export type GetStatusesActionType = {
     type: typeof GET_STATUSES
-    payload: Array<Object>
+    payload: Array<StatusType>
 }
-export const getStatuses = (statuses: Array<Object>): GetStatusesActionType => ({
+export const getStatuses = (statuses: Array<StatusType>): GetStatusesActionType => ({
     type: GET_STATUSES,
     payload: statuses
 })
 
 type GetTaskActionType = {
     type: typeof GET_TASKS
-    payload: Array<Object>
+    payload: Array<TaskType>
 }
-export const getTasks = (tasks: Array<Object>): GetTaskActionType => ({
+export const getTasks = (tasks: Array<TaskType>): GetTaskActionType => ({
     type: GET_TASKS,
     payload: tasks
 })
@@ -80,11 +80,11 @@ export const clearNewTask = (): ClearTaskActionType => ({
 
 type PatchTaskActionType = {
     type: typeof PATCH_TASK
-    payload: Object
+    payload: TaskType
     key: string
     value: string
 }
-export const patchTask = (task: Object, key: string, value: string): PatchTaskActionType => ({
+export const patchTask = (task: TaskType, key: string, value: string): PatchTaskActionType => ({
     type: PATCH_TASK, payload: task, key: key, value: value
 })
 
