@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 
@@ -22,20 +22,20 @@ export const CreateCard = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
             dispatch(clearNewTask({}))
-            dispatch(toggleCreate(!isCreateModalOpen))
+            dispatch(toggleCreate())
         }
     }
     const handleCancel = () => {
         dispatch(clearNewTask({}))
-        dispatch(toggleCreate(!isCreateModalOpen))
+        dispatch(toggleCreate())
     }
 
     return (
         <div>
             <Modal isOpen={isCreateModalOpen} toggle={() =>
-                dispatch(toggleCreate(!isCreateModalOpen))}>
+                dispatch(toggleCreate())}>
                 <ModalHeader toggle={() =>
-                    dispatch(toggleCreate(!isCreateModalOpen))}>
+                    dispatch(toggleCreate())}>
                     Create Task
                 </ModalHeader>
                 <ModalBody>
