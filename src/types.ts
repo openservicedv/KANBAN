@@ -15,6 +15,7 @@ export type TaskType = {
     description: string
     priority: string
     status: string
+    key?: string
 }
 
 export type StatusType = {

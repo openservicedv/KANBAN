@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {patchTask, saveTaskName} from "../store/actions"
 import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
+import {AppStateType} from "../store";
+import {TaskType} from "../types";
 
-export const EditModal = ({isEditModalOpen, setIsEditModalOpen}) => {
+type PropsType = {
+    isEditModalOpen: boolean
+    setIsEditModalOpen: (isEditModalOpen: boolean) => void
+}
+export const EditModal: FC<PropsType> = ({isEditModalOpen, setIsEditModalOpen}) => {
 
     const dispatch = useDispatch();
-    const newTask = useSelector(state => state.taskReducer.newTask)
+    const newTask: TaskType = useSelector((state: AppStateType) => state.taskReducer.newTask)
 
     return (
         <Modal isOpen={isEditModalOpen}
@@ -30,6 +36,7 @@ export const EditModal = ({isEditModalOpen, setIsEditModalOpen}) => {
                         onClick={
                             () => {
                                 dispatch(patchTask(newTask, "name", newTask.name))
+                                // @ts-ignore
                                 dispatch(asyncPatchTask(newTask))
                                 setIsEditModalOpen(!isEditModalOpen)
                             }

@@ -9,6 +9,11 @@ const rootReducer = combineReducers({
     taskReducer,
 })
 
+// export type PartialState = {
+//     statusReducer?: Partial<StatusReducerType>;
+//     taskReducer?: Partial<TaskReducerType>;
+// };
+
 export type AppStateType = ReturnType<typeof rootReducer>
 
 export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
