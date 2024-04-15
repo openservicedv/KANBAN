@@ -28,9 +28,9 @@ export const getTasks = (tasks: Array<TaskType>): GetTaskActionType => ({
 
 type SaveTaskIdActionType = {
     type: typeof SAVE_TASK_ID
-    payload: string
+    payload: string | undefined
 }
-export const saveTaskId = (taskId: string): SaveTaskIdActionType => ({
+export const saveTaskId = (taskId: string | undefined): SaveTaskIdActionType => ({
     type: SAVE_TASK_ID,
     payload: taskId
 })

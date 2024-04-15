@@ -9,17 +9,21 @@ import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
 import {Button} from "reactstrap";
 import {asyncReturnLost} from "./controllers/async/asyncReturnLost";
 import {EditModal} from "./components/EditModal";
+import {AppStateType} from "./store";
+import React from 'react';
 
 function App() {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
     const dispatch = useDispatch()
-    const statuses = useSelector(state => state.statusReducer.statuses)
-    const tasks = useSelector(state => state.taskReducer.tasks)
+    const statuses = useSelector((state: AppStateType) => state.statusReducer.statuses)
+    const tasks = useSelector((state: AppStateType) => state.taskReducer.tasks)
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(asyncGetStatuses())
+        // @ts-ignore
         dispatch(asyncGetTasks())
     }, [dispatch]);
 

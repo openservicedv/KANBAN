@@ -1,27 +1,34 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Button from 'react-bootstrap/Button';
-
 import {useDispatch, useSelector} from "react-redux";
-import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
+// import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
 import {patchTask, saveTaskId, saveTaskName} from "../store/actions";
-import {Priority as priority} from "../types";
+import {TaskType} from "../types";
+import {AppStateType} from "../store";
 
-const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
+type PropsType = {
+    task: TaskType
+    // priority: string
+    isEditModalOpen: boolean
+    setIsEditModalOpen: (isEditModalOpen: boolean) => void
+}
+const KanbanCard: FC<PropsType> = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
 
-    const dispatch = useDispatch()
-    const statuses = useSelector(state => state.statusReducer.statuses)
+    const dispatch: any = useDispatch()
+    const statuses = useSelector((state: AppStateType) => state.statusReducer.statuses)
 
-    const handleEditModal = (task) => {
+    const handleEditModal = (task: TaskType) => {
         // console.log(task._id)
         setIsEditModalOpen(!isEditModalOpen)
         dispatch(saveTaskId(task._id))
         dispatch(saveTaskName(task.name))
     }
 
-    const handlePatch = (task, key, step) => {
+    const handlePatch = (task: TaskType, key: string, step: string) => {
         if (key === "status") {
             for (let i = 0; i < statuses.length; i++) {
                 if (statuses[i].status === task.status) {
+                    // @ts-ignore
                     dispatch(patchTask(task, key, statuses[i + step].status))
                 }
             }
@@ -32,6 +39,9 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
         }
     }
 
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className="card"
              style={{
@@ -87,8 +97,8 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
                          marginBottom: "5px"
                      }}>
                     <Button variant="outline-secondary"
-                            disabled={task.priority === priority[0]}
-                            onClick={() => handlePatch(task, "priority", -1)}
+                            // disabled={task.priority === priority[0]}
+                            // onClick={() => handlePatch(task, "priority", -1)}
                     >
                         ↓
                     </Button>
@@ -106,8 +116,8 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
                         priority: {task.priority}
                     </p>
                     <Button variant="outline-secondary"
-                            disabled={task.priority === priority[priority.length - 1]}
-                            onClick={() => handlePatch(task, "priority", 1)}
+                            // disabled={task.priority === priority[priority.length - 1]}
+                            // onClick={() => handlePatch(task, "priority", 1)}
                     >
                         ↑
                     </Button>
@@ -121,7 +131,7 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
                     <Button
                         disabled={task.status === statuses[0].status}
                         variant="outline-secondary"
-                        onClick={() => handlePatch(task, "status", -1)}
+                        // onClick={() => handlePatch(task, "status", -1)}
                         style={{
                             marginRight: "7px",
                         }}
@@ -129,7 +139,7 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
                         ←
                     </Button>
                     <Button variant="danger"
-                            onClick={() => dispatch(asyncDeleteTask(task._id))}
+                            // onClick={() => dispatch(asyncDeleteTask(task._id))}
                             style={{
                                 // marginRight: "10px",
                                 border: "solid white 1px",
@@ -142,7 +152,7 @@ const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
                     <Button
                         disabled={task.status === statuses[statuses.length - 1].status}
                         variant="outline-secondary"
-                        onClick={() => handlePatch(task, "status", 1)}
+                        // onClick={() => handlePatch(task, "status", 1)}
                         style={{
                             marginLeft: "7px",
                         }}

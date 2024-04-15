@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import KanbanCard from "./KanbanCard";
 import Button from 'react-bootstrap/Button';
 import {useSelector} from "react-redux";
+import {AppStateType} from "../store";
+// import {Priority as priority} from "../types";
 
-export const KanbanColumn = ({column, isEditModalOpen, setIsEditModalOpen}) => {
-    const tasks = useSelector(state => state.taskReducer.tasks)
-    const priority = useSelector(state => state.statusReducer.priority)
+type PropsType = {
+    column: any
+    isEditModalOpen: boolean
+    setIsEditModalOpen: (isEditModalOpen: boolean) => void
+}
+export const KanbanColumn: FC<PropsType> = ({column, isEditModalOpen, setIsEditModalOpen}) => {
+    const tasks = useSelector((state: AppStateType) => state.taskReducer.tasks)
 
     return (
         <div className="col"
@@ -43,7 +49,7 @@ export const KanbanColumn = ({column, isEditModalOpen, setIsEditModalOpen}) => {
                 .map(el => (
                     <KanbanCard key={el._id}
                                 task={el}
-                        priority={priority}
+                        // priority={priority}
                                 isEditModalOpen={isEditModalOpen}
                                 setIsEditModalOpen={setIsEditModalOpen}
                     />

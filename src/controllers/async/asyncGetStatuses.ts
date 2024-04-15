@@ -2,7 +2,7 @@ import axios from "axios";
 import {getStatuses} from "../../store/actions";
 
 export const asyncGetStatuses = () => {
-    return function (dispatch) {
+    return function (dispatch: any) {
         axios.get("https://expressjs-server.vercel.app/statuses")
             .then((res) => {
                 // console.log(res.data)
