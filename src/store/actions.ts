@@ -60,9 +60,9 @@ export const saveTaskStatus = (taskStatus: string): SaveTaskStatusActionType => 
 
 type SaveTaskPriorityActionType = {
     type: typeof SAVE_TASK_PRIORITY
-    payload: number
+    payload: string
 }
-export const saveTaskPriority = (taskPriority: number): SaveTaskPriorityActionType => ({
+export const saveTaskPriority = (taskPriority: string): SaveTaskPriorityActionType => ({
     type: SAVE_TASK_PRIORITY,
     payload: taskPriority
 })

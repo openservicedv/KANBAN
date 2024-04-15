@@ -1,13 +1,18 @@
+import React from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import Form from 'react-bootstrap/Form';
-
 import {useDispatch, useSelector} from "react-redux";
 import {asyncPostTask} from "../controllers/async/asyncPostTask";
 import {clearNewTask, saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus} from "../store/actions";
+import {StatusType} from "../types";
 
-export const CreateModal = ({isCreateModalOpen, setIsCreateModalOpen}) => {
+type PropsType = {
+    isCreateModalOpen: boolean
+    setIsCreateModalOpen: (isCreateModalOpen: boolean) => void
+}
+export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreateModalOpen}) => {
 
-    const dispatch = useDispatch()
+    const dispatch: any = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
     const priority = useSelector(state => state.statusReducer.priority)
     const newTask = useSelector(state => state.taskReducer.newTask)
@@ -15,12 +20,12 @@ export const CreateModal = ({isCreateModalOpen, setIsCreateModalOpen}) => {
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
-            dispatch(clearNewTask({}))
+            dispatch(clearNewTask())
             setIsCreateModalOpen(!isCreateModalOpen)
         }
     }
     const handleCancel = () => {
-        dispatch(clearNewTask({}))
+        dispatch(clearNewTask())
         setIsCreateModalOpen(!isCreateModalOpen)
     }
 
@@ -48,28 +53,29 @@ export const CreateModal = ({isCreateModalOpen, setIsCreateModalOpen}) => {
                                  onChange={(event) =>
                                      dispatch(saveTaskStatus(event.target.value))}>
                         <option>Define status</option>
-                        {statuses?.map(el => (
+                        {statuses?.map((el: StatusType) => (
                             <option key={el._id} value={el.status}>{el.status}</option>
-                        ))}
-                    </Form.Select>
-                    <Form.Select aria-label="Default select example"
-                                 onChange={(event) =>
-                                     dispatch(saveTaskPriority(event.target.value))}>
-                        <option>Define priority</option>
-                        {priority.map((el, idx) => (
-                            <option key={idx} value={el}>{el}</option>
-                        ))}
-                    </Form.Select>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="success" onClick={handleSave}>
-                        Save
-                    </Button>{' '}
-                    <Button color="danger" onClick={handleCancel}>
-                        Cancel
-                    </Button>
-                </ModalFooter>
-            </Modal>
-        </div>
-    );
+                    ))}
+                </Form.Select>
+                <Form.Select aria-label="Default select example"
+                             onChange={(event) =>
+                                 dispatch(saveTaskPriority(event.target.value))}>
+                    <option>Define priority</option>
+                    {priority.map((el: number, idx: number) => (
+                        <option key={idx} value={el}>{el}</option>
+                    ))}
+                </Form.Select>
+            </ModalBody>
+            <ModalFooter>
+                <Button color="success" onClick={handleSave}>
+                    Save
+                </Button>{' '}
+                <Button color="danger" onClick={handleCancel}>
+                    Cancel
+                </Button>
+            </ModalFooter>
+        </Modal>
+</div>
+)
+    ;
 };

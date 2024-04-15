@@ -1,20 +1,21 @@
-export const GET_TASKS = "getTasks"
-export const SAVE_TASK_ID = "saveTaskId"
-export const SAVE_TASK_NAME = "saveTaskName"
-export const SAVE_TASK_DESCRIPTION = "saveTaskDescription"
-export const SAVE_TASK_STATUS = "saveTaskStatus"
-export const SAVE_TASK_PRIORITY = "saveTaskPriority"
-export const CLEAR_NEW_TASK = "clearNewTask"
-export const PATCH_TASK = "patchTask"
+import {
+    CLEAR_NEW_TASK, GET_TASKS, PATCH_TASK, SAVE_TASK_DESCRIPTION,
+    SAVE_TASK_ID, SAVE_TASK_NAME, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS, TaskType
+} from "../types";
 
 export type TaskDefaultStateType = {
-    tasks: Array<Object>,
-    newTask: Object
+    tasks: Array<TaskType>,
+    newTask: TaskType
 }
 
 const defaultState: TaskDefaultStateType = {
     tasks: [],
-    newTask: {}
+    newTask: {
+        name: '',
+        description: '',
+        priority: '',
+        status: '',
+    }
 }
 export const taskReducer = (state = defaultState, action: any): TaskDefaultStateType => {
     switch (action.type) {
@@ -31,7 +32,14 @@ export const taskReducer = (state = defaultState, action: any): TaskDefaultState
         case SAVE_TASK_PRIORITY:
             return {...state, newTask: {...state.newTask, priority: action.payload}}
         case CLEAR_NEW_TASK:
-            return {...state, newTask: {}}
+            return {
+                ...state, newTask: {
+                    name: '',
+                    description: '',
+                    priority: '',
+                    status: '',
+                }
+            }
         case PATCH_TASK:
             return {
                 ...state, newTask:

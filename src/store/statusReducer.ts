@@ -1,7 +1,9 @@
+import {StatusType} from "../types";
+
 export const GET_STATUSES = "getStatuses"
 
 type StatusDefaultStateType = {
-    statuses: Array<{}>
+    statuses: Array<StatusType>
     priority: Array<number>
 }
 const defaultState: StatusDefaultStateType = {
