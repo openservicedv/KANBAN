@@ -11,20 +11,20 @@ export const EditCard = () => {
     const isEditModalOpen = useSelector(state => state.toggleReducer.isEditModalOpen)
 
     const handleSaveEditModal = () => {
-        dispatch(toggleEdit(!isEditModalOpen))
+        dispatch(toggleEdit())
         dispatch(asyncPatchTask(newTask))
         dispatch(patchTask(newTask, "name", newTask.name))
     }
     const handleCancelEditModal = () => {
-        dispatch(toggleEdit(!isEditModalOpen))
+        dispatch(toggleEdit())
     }
 
     return (
         <div>
             <Modal isOpen={isEditModalOpen} toggle={() =>
-                dispatch(toggleEdit(!isEditModalOpen))}>
+                dispatch(toggleEdit())}>
                 <ModalHeader toggle={() =>
-                    dispatch(toggleEdit(!isEditModalOpen))}>
+                    dispatch(toggleEdit())}>
                     Edit card
                 </ModalHeader>
                 <ModalBody>
