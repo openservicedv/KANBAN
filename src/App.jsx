@@ -6,7 +6,7 @@ import {KanbanColumn} from "./components/KanbanColumn";
 import {CreateCard} from "./components/CreateCard";
 import {asyncGetStatuses} from "./controllers/async/asyncGetStatuses";
 import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
-import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
+// import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 import {Button} from "reactstrap";
 import {asyncReturnLost} from "./controllers/async/asyncReturnLost";
 import {toggleCreate} from "./store/actions";
