@@ -1,3 +1,5 @@
+export const Priority = Array(10).fill(0).map((el, index) => index)
+export const GET_STATUSES = "getStatuses"
 export const GET_TASKS = "getTasks"
 export const SAVE_TASK_ID = "saveTaskId"
 export const SAVE_TASK_NAME = "saveTaskName"

@@ -3,12 +3,12 @@ import {
     SAVE_TASK_ID, SAVE_TASK_NAME, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS, TaskType
 } from "../types";
 
-export type TaskDefaultStateType = {
+export type TaskReducerType = {
     tasks: Array<TaskType>,
     newTask: TaskType
 }
 
-const defaultState: TaskDefaultStateType = {
+const defaultState: TaskReducerType = {
     tasks: [],
     newTask: {
         name: '',
@@ -17,7 +17,7 @@ const defaultState: TaskDefaultStateType = {
         status: '',
     }
 }
-export const taskReducer = (state = defaultState, action: any): TaskDefaultStateType => {
+export const taskReducer = (state = defaultState, action: any): TaskReducerType => {
     switch (action.type) {
         case GET_TASKS:
             return {...state, tasks: [...action.payload]}

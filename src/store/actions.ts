@@ -1,8 +1,8 @@
-import {GET_STATUSES} from "./statusReducer";
+import {GET_STATUSES} from "../types";
 import {
     CLEAR_NEW_TASK, GET_TASKS, PATCH_TASK, SAVE_TASK_ID, SAVE_TASK_NAME,
     SAVE_TASK_DESCRIPTION, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS
-} from "./taskReducer";
+} from "../types";
 
 type GetStatusesActionType = {
     type: typeof GET_STATUSES

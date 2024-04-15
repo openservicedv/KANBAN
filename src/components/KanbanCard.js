@@ -4,12 +4,12 @@ import Button from 'react-bootstrap/Button';
 import {useDispatch, useSelector} from "react-redux";
 import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
 import {patchTask, saveTaskId, saveTaskName} from "../store/actions";
+import {Priority as priority} from "../types";
 
 const KanbanCard = ({task, isEditModalOpen, setIsEditModalOpen, }) => {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const priority = useSelector(state => state.statusReducer.priority)
 
     const handleEditModal = (task) => {
         // console.log(task._id)

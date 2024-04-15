@@ -1,16 +1,12 @@
-import {StatusType} from "../types";
+import {GET_STATUSES, StatusType} from "../types";
 
-export const GET_STATUSES = "getStatuses"
-
-type StatusDefaultStateType = {
-    statuses: Array<StatusType>
-    priority: Array<number>
+export type StatusReducerType = {
+    statuses: StatusType[]
 }
-const defaultState: StatusDefaultStateType = {
+const defaultState: StatusReducerType = {
     statuses: [],
-    priority: Array(10).fill(0).map((el, index) => index)
 }
-export const statusReducer = (state = defaultState, action: any): StatusDefaultStateType => {
+export const statusReducer = (state = defaultState, action: any): StatusReducerType => {
     switch (action.type) {
         case GET_STATUSES:
             return {...state, statuses: [...action.payload]}
