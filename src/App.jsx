@@ -16,7 +16,7 @@ function App() {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    const newTask = useSelector(state => state.taskReducer.newTask)
+    // const newTask = useSelector(state => state.taskReducer.newTask)
     const tasks = useSelector(state => state.taskReducer.tasks)
     const isCreateModalOpen = useSelector(state => state.toggleReducer.isCreateModalOpen)
 
@@ -25,29 +25,18 @@ function App() {
         dispatch(asyncGetTasks())
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     if ((Object.keys(newTask).length !== 0)) {
-    //         dispatch(asyncPatchTask(newTask))
-    //     }
-    // }, [dispatch, newTask]);
-
     return (
         <div className="App "
              style={{
                  // border: "DASHED GRAY 1PX",
-             }}
-        >
+             }}>
             <h1>Kanban Board</h1>
-
-            <CreateCard />
-
-            <EditCard />
-
+            <CreateCard/>
+            <EditCard/>
             <div className="container text-center"
                  style={{
                      // border: "DASHED GRAY 2PX",
-                 }}
-            >
+                 }}>
                 <div className="d-flex justify-content-end"
                      style={{
                          // border: "DASHED GRAY 1PX",
@@ -59,8 +48,8 @@ function App() {
                                 marginRight: "10px",
                                 width: "80px",
                                 border: "solid yellow 1px",
-                            }}
-                    >Find
+                            }}>
+                        Find
                     </Button>
                     <Button color="danger"
                             onClick={() => dispatch(toggleCreate(!isCreateModalOpen))}
@@ -68,15 +57,14 @@ function App() {
                                 marginRight: "0",
                                 width: "80px",
                                 border: "solid red 1px",
-                            }}
-                    >Create
+                            }}>
+                        Create
                     </Button>
                 </div>
                 <div className="row"
                      style={{
                          // border: "DASHED RED 1PX",
-                     }}
-                >
+                     }}>
                     {statuses.map((el) => (
                         <KanbanColumn key={el._id}
                                       column={el}
