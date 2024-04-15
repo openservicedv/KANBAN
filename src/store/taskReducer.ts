@@ -2,6 +2,7 @@ import {
     CLEAR_NEW_TASK, GET_TASKS, PATCH_TASK, SAVE_TASK_DESCRIPTION,
     SAVE_TASK_ID, SAVE_TASK_NAME, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS, TaskType
 } from "../types";
+import {ActionTypes} from "./actions";
 
 export type TaskReducerType = {
     tasks: Array<TaskType>,
@@ -17,7 +18,7 @@ const defaultState: TaskReducerType = {
         status: '',
     }
 }
-export const taskReducer = (state = defaultState, action: any): TaskReducerType => {
+export const taskReducer = (state = defaultState, action: ActionTypes): TaskReducerType => {
     switch (action.type) {
         case GET_TASKS:
             return {...state, tasks: [...action.payload]}

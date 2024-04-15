@@ -4,6 +4,10 @@ import {
     SAVE_TASK_DESCRIPTION, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS
 } from "../types";
 
+export type ActionTypes = GetStatusesActionType |  GetTaskActionType | SaveTaskIdActionType |
+    SaveTaskNameActionType | SaveTaskDescriptionActionType |SaveTaskStatusActionType |
+    SaveTaskPriorityActionType | ClearTaskActionType | PatchTaskActionType
+
 type GetStatusesActionType = {
     type: typeof GET_STATUSES
     payload: Array<Object>
