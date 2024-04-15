@@ -9,7 +9,6 @@ export const saveTaskStatus = (payload) => ({type: "saveTaskStatus", payload: pa
 export const saveTaskPriority = (payload) => ({type: "saveTaskPriority", payload: payload})
 export const clearNewTask = (payload) => ({type: "clearNewTask", payload: payload})
 export const toggleCreate = () => ({type: TOGGLE_CREATE})
-
 export const toggleEdit = (payload) => ({type: TOGGLE_EDIT, payload: payload})
 export const patchTask = (payload, key, value) => ({type: "patchTask", payload: payload, key: key, value: value})
 
