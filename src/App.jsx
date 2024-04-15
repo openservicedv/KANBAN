@@ -25,11 +25,11 @@ function App() {
         dispatch(asyncGetTasks())
     }, [dispatch]);
 
-    useEffect(() => {
-        if ((Object.keys(newTask).length !== 0)) {
-            dispatch(asyncPatchTask(newTask))
-        }
-    }, [dispatch, newTask]);
+    // useEffect(() => {
+    //     if ((Object.keys(newTask).length !== 0)) {
+    //         dispatch(asyncPatchTask(newTask))
+    //     }
+    // }, [dispatch, newTask]);
 
     return (
         <div className="App "
