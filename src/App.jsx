@@ -6,7 +6,6 @@ import {KanbanColumn} from "./components/KanbanColumn";
 import {CreateModal} from "./components/CreateModal";
 import {asyncGetStatuses} from "./controllers/async/asyncGetStatuses";
 import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
-// import {asyncPatchTask} from "./controllers/async/asyncPatchTask";
 import {Button} from "reactstrap";
 import {asyncReturnLost} from "./controllers/async/asyncReturnLost";
 import {EditModal} from "./components/EditModal";
@@ -17,14 +16,12 @@ function App() {
 
     const dispatch = useDispatch()
     const statuses = useSelector(state => state.statusReducer.statuses)
-    // const newTask = useSelector(state => state.taskReducer.newTask)
     const tasks = useSelector(state => state.taskReducer.tasks)
 
     useEffect(() => {
         dispatch(asyncGetStatuses())
         dispatch(asyncGetTasks())
-        console.log("отработала функция ДИСПАТЧ")
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="App "
