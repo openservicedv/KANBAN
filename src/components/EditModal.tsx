@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {patchTask, saveTaskName} from "../store/actions"
+import {patchTaskAction, saveTaskNameAction} from "../store/actions"
 import {asyncPatchTask} from "../controllers/async/asyncPatchTask";
 import {AppStateType} from "../store";
 import {TaskType} from "../types";
@@ -27,7 +27,7 @@ export const EditModal: FC<PropsType> = ({isEditModalOpen, setIsEditModalOpen}) 
                         type="text"
                         value={newTask.name}
                         onChange={(event) =>
-                            dispatch(saveTaskName(event.target.value))
+                            dispatch(saveTaskNameAction(event.target.value))
                         }/>
                 </InputGroup>
             </ModalBody>
@@ -35,7 +35,7 @@ export const EditModal: FC<PropsType> = ({isEditModalOpen, setIsEditModalOpen}) 
                 <Button color="success"
                         onClick={
                             () => {
-                                dispatch(patchTask(newTask, "name", newTask.name))
+                                dispatch(patchTaskAction(newTask, "name", newTask.name))
                                 // @ts-ignore
                                 dispatch(asyncPatchTask(newTask))
                                 setIsEditModalOpen(!isEditModalOpen)

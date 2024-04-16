@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import Button from 'react-bootstrap/Button';
 import {useDispatch, useSelector} from "react-redux";
 // import {asyncDeleteTask} from "../controllers/async/asyncDeleteTask";
-import {patchTask, saveTaskId, saveTaskName} from "../store/actions";
+import {patchTaskAction, saveTaskIdAction, saveTaskNameAction} from "../store/actions";
 import {TaskType} from "../types";
 import {AppStateType} from "../store";
 
@@ -20,8 +20,8 @@ const KanbanCard: FC<PropsType> = ({task, isEditModalOpen, setIsEditModalOpen, }
     const handleEditModal = (task: TaskType) => {
         // console.log(task._id)
         setIsEditModalOpen(!isEditModalOpen)
-        dispatch(saveTaskId(task._id))
-        dispatch(saveTaskName(task.name))
+        dispatch(saveTaskIdAction(task._id))
+        dispatch(saveTaskNameAction(task.name))
     }
 
     const handlePatch = (task: TaskType, key: string, step: string) => {
@@ -29,13 +29,13 @@ const KanbanCard: FC<PropsType> = ({task, isEditModalOpen, setIsEditModalOpen, }
             for (let i = 0; i < statuses.length; i++) {
                 if (statuses[i].status === task.status) {
                     // @ts-ignore
-                    dispatch(patchTask(task, key, statuses[i + step].status))
+                    dispatch(patchTaskAction(task, key, statuses[i + step].status))
                 }
             }
         } else if (key === "priority") {
-            dispatch(patchTask(task, key, task.priority + step))
+            dispatch(patchTaskAction(task, key, task.priority + step))
         } else if (key === "name") {
-            dispatch(patchTask(task, key, "hello!"))
+            dispatch(patchTaskAction(task, key, "hello!"))
         }
     }
 

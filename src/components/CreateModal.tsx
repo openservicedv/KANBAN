@@ -3,7 +3,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} f
 import Form from 'react-bootstrap/Form';
 import {useDispatch, useSelector} from "react-redux";
 import {asyncPostTask} from "../controllers/async/asyncPostTask";
-import {clearNewTask, saveTaskName, saveTaskDescription, saveTaskPriority, saveTaskStatus} from "../store/actions";
+import {clearNewTaskAction, saveTaskNameAction, saveTaskDescriptionAction, saveTaskPriorityAction, saveTaskStatusAction} from "../store/actions";
 import {StatusType, TaskType, Priority as priority} from "../types";
 import {AppStateType} from "../store";
 
@@ -25,12 +25,12 @@ export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreate
     const handleSave = () => {
         if (newTask.name && newTask.description && newTask.status && newTask.priority) {
             dispatch(asyncPostTask(newTask))
-            dispatch(clearNewTask())
+            dispatch(clearNewTaskAction())
             setIsCreateModalOpen(!isCreateModalOpen)
         }
     }
     const handleCancel = () => {
-        dispatch(clearNewTask())
+        dispatch(clearNewTaskAction())
         setIsCreateModalOpen(!isCreateModalOpen)
     }
 
@@ -43,17 +43,17 @@ export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreate
                     <InputGroup style={{marginBottom: "15px"}}>
                         <Input placeholder="task name"
                                onChange={(event) =>
-                                   dispatch(saveTaskName(event.target.value))}/>
+                                   dispatch(saveTaskNameAction(event.target.value))}/>
                     </InputGroup>
                     <InputGroup style={{marginBottom: "15px"}}>
                         <Input placeholder="task description"
                                onChange={(event) =>
-                                   dispatch(saveTaskDescription(event.target.value))}/>
+                                   dispatch(saveTaskDescriptionAction(event.target.value))}/>
                     </InputGroup>
                     <Form.Select aria-label="Default1"
                                  style={{marginBottom: "15px"}}
                                  onChange={(event) =>
-                                     dispatch(saveTaskStatus(event.target.value))}>
+                                     dispatch(saveTaskStatusAction(event.target.value))}>
                         <option>Define status</option>
                         {statuses?.map((el: StatusType) => (
                             <option key={el._id} value={el.status}>{el.status}</option>
@@ -61,7 +61,7 @@ export const CreateModal: React.FC<PropsType> = ({isCreateModalOpen, setIsCreate
                     </Form.Select>
                     <Form.Select aria-label="Default2"
                                  onChange={(event) =>
-                                     dispatch(saveTaskPriority(event.target.value))}>
+                                     dispatch(saveTaskPriorityAction(event.target.value))}>
                         <option>Define priority</option>
                         {priority?.map((el: number, idx: number) => (
                             <option key={idx} value={el}>{el}</option>

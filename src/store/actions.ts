@@ -34,53 +34,65 @@ type SaveTaskIdActionType = {
     type: typeof SAVE_TASK_ID
     payload: string | undefined
 }
-export const saveTaskId = (taskId: string | undefined): SaveTaskIdActionType => ({
-    type: SAVE_TASK_ID,
-    payload: taskId
-})
+export const saveTaskIdAction = (taskId: string | undefined): SaveTaskIdActionType => {
+    return {
+        type: SAVE_TASK_ID,
+        payload: taskId
+    }
+}
 
 type SaveTaskNameActionType = {
     type: typeof SAVE_TASK_NAME
     payload: string
 }
-export const saveTaskName = (taskName: string): SaveTaskNameActionType => ({
-    type: SAVE_TASK_NAME,
-    payload: taskName
-})
+export const saveTaskNameAction = (taskName: string): SaveTaskNameActionType => {
+    return {
+        type: SAVE_TASK_NAME,
+        payload: taskName
+    }
+}
 
 type SaveTaskDescriptionActionType = {
     type: typeof SAVE_TASK_DESCRIPTION
     payload: string
 }
-export const saveTaskDescription = (taskDescription: string): SaveTaskDescriptionActionType => ({
-    type: SAVE_TASK_DESCRIPTION,
-    payload: taskDescription
-})
+export const saveTaskDescriptionAction = (taskDescription: string): SaveTaskDescriptionActionType => {
+    return {
+        type: SAVE_TASK_DESCRIPTION,
+        payload: taskDescription
+    }
+}
 
 type SaveTaskStatusActionType = {
     type: typeof SAVE_TASK_STATUS
     payload: string
 }
-export const saveTaskStatus = (taskStatus: string): SaveTaskStatusActionType => ({
-    type: SAVE_TASK_STATUS,
-    payload: taskStatus
-})
+export const saveTaskStatusAction = (taskStatus: string): SaveTaskStatusActionType => {
+    return {
+        type: SAVE_TASK_STATUS,
+        payload: taskStatus
+    }
+}
 
 type SaveTaskPriorityActionType = {
     type: typeof SAVE_TASK_PRIORITY
     payload: string
 }
-export const saveTaskPriority = (taskPriority: string): SaveTaskPriorityActionType => ({
-    type: SAVE_TASK_PRIORITY,
-    payload: taskPriority
-})
+export const saveTaskPriorityAction = (taskPriority: string): SaveTaskPriorityActionType => {
+    return {
+        type: SAVE_TASK_PRIORITY,
+        payload: taskPriority
+    }
+}
 
 type ClearTaskActionType = {
     type: typeof CLEAR_NEW_TASK
 }
-export const clearNewTask = (): ClearTaskActionType => ({
-    type: CLEAR_NEW_TASK
-})
+export const clearNewTaskAction = (): ClearTaskActionType => {
+    return {
+        type: CLEAR_NEW_TASK
+    }
+}
 
 type PatchTaskActionType = {
     type: typeof PATCH_TASK
@@ -88,7 +100,12 @@ type PatchTaskActionType = {
     key: string
     value: string
 }
-export const patchTask = (task: TaskType, key: string, value: string): PatchTaskActionType => ({
-    type: PATCH_TASK, payload: task, key: key, value: value
-})
+export const patchTaskAction = (task: TaskType, key: string, value: string): PatchTaskActionType => {
+    return {
+        type: PATCH_TASK,
+        payload: task,
+        key: key,
+        value: value
+    }
+}
 
