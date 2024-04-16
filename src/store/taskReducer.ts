@@ -9,7 +9,7 @@ export type TaskReducerType = {
     newTask: TaskType
 }
 
-const defaultState: TaskReducerType = {
+const initialState: TaskReducerType = {
     tasks: [],
     newTask: {
         name: '',
@@ -18,7 +18,7 @@ const defaultState: TaskReducerType = {
         status: '',
     }
 }
-export const taskReducer = (state = defaultState, action: any): TaskReducerType => {
+export const taskReducer = (state = initialState, action: any): TaskReducerType => {
     switch (action.type) {
         case GET_TASKS:
             return {...state, tasks: [...action.payload]}

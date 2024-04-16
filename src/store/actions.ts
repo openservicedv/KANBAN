@@ -4,7 +4,7 @@ import {
     SAVE_TASK_DESCRIPTION, SAVE_TASK_PRIORITY, SAVE_TASK_STATUS
 } from "../types";
 
-// export type ActionTypes = GetTaskActionType | SaveTaskIdActionType |
+// export type ActionTypes = GetTasksActionType | SaveTaskIdActionType |
 //     SaveTaskNameActionType | SaveTaskDescriptionActionType |SaveTaskStatusActionType |
 //     SaveTaskPriorityActionType | ClearTaskActionType | PatchTaskActionType
 
@@ -12,19 +12,23 @@ type GetStatusesActionType = {
     type: typeof GET_STATUSES
     payload: Array<StatusType>
 }
-export const getStatuses = (statuses: Array<StatusType>): GetStatusesActionType => ({
-    type: GET_STATUSES,
-    payload: statuses
-})
+export const getStatusesAction = (statuses: Array<StatusType>): GetStatusesActionType => {
+    return {
+        type: GET_STATUSES,
+        payload: statuses
+    }
+}
 
-type GetTaskActionType = {
+type GetTasksActionType = {
     type: typeof GET_TASKS
     payload: Array<TaskType>
 }
-export const getTasks = (tasks: Array<TaskType>): GetTaskActionType => ({
-    type: GET_TASKS,
-    payload: tasks
-})
+export const getTasksAction = (tasks: Array<TaskType>): GetTasksActionType => {
+    return {
+        type: GET_TASKS,
+        payload: tasks
+    }
+}
 
 type SaveTaskIdActionType = {
     type: typeof SAVE_TASK_ID

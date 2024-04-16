@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useEffect, useState} from "react";
@@ -9,9 +10,8 @@ import {asyncGetTasks} from "./controllers/async/asyncGetTasks";
 import {Button} from "reactstrap";
 import {EditModal} from "./components/EditModal";
 import {AppStateType} from "./store";
-import React from 'react';
 
-function App() {
+export default function App() {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
@@ -37,9 +37,8 @@ function App() {
             <div className="container text-center">
                 <div className="d-flex justify-content-end">
                     <Button color="danger"
-                            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}>
-                        Create
-                    </Button>
+                            onClick={() => setIsCreateModalOpen(!isCreateModalOpen)}
+                    >Create</Button>
                 </div>
                 <div className="row">
                     {statuses.map((el) => (
@@ -51,7 +50,4 @@ function App() {
             </div>
         </div>
     )
-        ;
 }
-
-export default App;

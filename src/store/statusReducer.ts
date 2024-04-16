@@ -4,10 +4,10 @@ import {GET_STATUSES, StatusType} from "../types";
 export type StatusReducerType = {
     statuses: StatusType[]
 }
-const defaultState: StatusReducerType = {
+const initialState: StatusReducerType = {
     statuses: []
 }
-export const statusReducer = (state: StatusReducerType = defaultState, action: any): StatusReducerType => {
+export const statusReducer = (state: StatusReducerType = initialState, action: any): StatusReducerType => {
     switch (action.type) {
         case GET_STATUSES:
             console.log(state)
